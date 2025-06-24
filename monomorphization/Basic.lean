@@ -3,7 +3,6 @@ import Mathlib.Tactic.Ring
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Data.List.Basic
-import Mathlib.Algebra.Group.Defs
 
 open Lean Meta Elab Tactic Expr Std
 
@@ -51,7 +50,6 @@ def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo))
     Expr.lam n d b bi
   | e, _ => e
 
-
 def monomorphizeCore (goal : MVarId) (id : Syntax) :
     MetaM (List MVarId) := goal.withContext do
   let constName ← resolveGlobalConstNoOverload id
@@ -83,24 +81,35 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) :
     let instantiated ← instantiateMVars appliedExpr
     abstractMVars instantiated
 
-
   let newGoal ← abstResults.foldlM (fun goal abstrResult => do
     let binfos := abstrResult.mvars.map (fun mvar =>
       (mvars.idxOf? mvar).map (fun idx => binders[idx]!)
     )
 
     let withBinders := updateLambdaBinderInfos (abstrResult.expr) binfos.toList
-    dbg_trace withBinders
 
     let newName := constName.modifyBase fun s => Name.mkSimple (toString s ++ "'")
-    -- note or let
     pure (← goal.note newName withBinders).2
   ) goal
   return [newGoal]
 
-syntax (name := monomorphize) "monomorphize " ident : tactic
+def monomorphizeMultiple (goal : MVarId) (ids : Array Syntax) : MetaM (List MVarId) := do
+  ids.foldlM (fun currentGoals id => do
+    match currentGoals with
+    | [] => return []
+    | g :: _ => monomorphizeCore g id
+  ) [goal]
+
+syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
+syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 
 @[tactic monomorphize] def evalMonomorphize : Tactic
+| `(tactic| monomorphize [$ids:ident,*]) => do
+    let idsArray := ids.getElems
+    liftMetaTactic fun g => monomorphizeMultiple g idsArray
+| _ => throwUnsupportedSyntax
+
+@[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
 | `(tactic| monomorphize $id:ident) =>
     liftMetaTactic fun g => monomorphizeCore g id
 | _ => throwUnsupportedSyntax
@@ -113,14 +122,8 @@ example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n := 
   monomorphize pow_add
   exact pow_add' x m n
 
-example (a b : Nat) : a + b = b + a := by
-  monomorphize HAdd.hAdd
-  sorry
-
-example : Nat := by
-  monomorphize default
-  sorry
-
-example (a b : Nat) (c d : ℤ) : ↑(a + b) = c + d := by
-  monomorphize add_comm
-  sorry
+example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n ∧ m + n = n + m := by
+  monomorphize [pow_add, add_comm]
+  constructor
+  · exact pow_add' x m n
+  · exact add_comm' m n

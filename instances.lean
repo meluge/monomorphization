@@ -1,7 +1,7 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
 import Canonical
-import Typeclass.Basic
+import Monomorphization.Basic
 
 -- fails and hangs
 -- example (x : ℝ) : x + 2 = 2 + x := by
