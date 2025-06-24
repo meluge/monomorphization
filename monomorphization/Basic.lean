@@ -4,13 +4,106 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Data.List.Basic
 
-open Lean Meta Elab Tactic Expr Std
+open Lean Elab Tactic Expr Std
+open Meta hiding transform
+
+structure MonoState where
+  mono : HashMap Name (List Name)
+  given : HashSet Expr
+  globalFVars : HashSet FVarId
+
+abbrev MonoM := StateT MonoState MetaM
+
 
 partial def getBinders (e : Expr) : MetaM (List BinderInfo) := do
   match e with
   | forallE _ _ b i        => return i :: (← getBinders b)
   | mdata _ b | lam _ _ b _ | app _ b | letE _ _ _ b _ => getBinders b
   | _                      => return []
+
+partial def preprocessMono (e : Expr) : MonoM Expr := do
+  let (fn, args) := Expr.getAppFnArgs e
+  let env ← getEnv
+  if let some info := env.find? fn then
+    let bs ← getBinders info.type
+    let indexes := bs.indexesOf .instImplicit
+    if !indexes.isEmpty then
+      let mut found := false
+      let globalFVars := (← get).globalFVars
+      let p := fun x => !globalFVars.contains x
+      for i in indexes do
+        let a := args[i]! -- TODO check fully applied
+        if a.hasAnyFVar p then
+          found := true
+        else
+          let type ← inferType a
+          modify (fun s => { s with given := s.given.insert type })
+      if !found then
+        let set := (← get).mono.getD fn []
+        for name in set do
+          let constInfo := (env.find? name).get!
+          let level ← constInfo.levelParams.mapM (fun _ => mkFreshLevelMVar)
+          let ⟨metas, _, body⟩ ← lambdaMetaTelescope constInfo.value!
+          if ← isDefEqGuarded e body then
+            return mkAppN (mkConst name level) metas
+        -- create new const!
+        let level ← info.levelParams.mapM (fun _ => mkFreshLevelMVar)
+        let typeInstantiated := info.type.instantiateLevelParams info.levelParams level
+        let ⟨metas, _, _⟩ ← forallMetaTelescope typeInstantiated
+        for i in indexes do
+          if !(← isDefEq args[i]! metas[i]!) then
+            panic! s!"Invalid application of {fn}"
+        let value := mkAppN (mkConst fn level) metas
+        let abstractResult ← abstractMVars (← instantiateMVars value)
+        let name := fn.num set.length
+        modify (fun s => { s with mono := s.mono.insert fn (name :: set) })
+        let _ ← addDecl <| Declaration.defnDecl {
+          name, levelParams := [] /- TODO-/,
+          type := (← inferType abstractResult.expr),
+          value := abstractResult.expr,
+          hints := .opaque,
+          safety := .safe
+        }
+        let _ ← isDefEq value e
+        let result := mkAppN (mkConst name level) abstractResult.mvars
+        return (← instantiateMVars result)
+  pure e
+
+
+partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr → n Expr) : n Expr := do
+  match ← f e with
+  | app fn arg =>
+    pure (.app (← transform fn f) (← transform arg f))
+  | lam name type body info =>
+    withLocalDecl name info type fun fvar => do
+      pure (.lam name (← transform type f) (← transform (body.instantiate1 fvar) f) info)
+  | forallE name type body info =>
+    withLocalDecl name info type fun fvar => do
+      pure (.forallE name (← transform type f) (← transform (body.instantiate1 fvar) f) info)
+  | letE name type value body nonDep =>
+    withLetDecl name type value fun fvar => do
+      pure (.letE name (← transform type f) (← transform value f) (← transform (body.instantiate1 fvar) f) nonDep)
+  | mdata m b => pure (.mdata m (← transform b f))
+  | _ => pure e
+
+
+def test := Nat.succ Nat.zero
+
+#eval (do
+  let e := ((← getEnv).find? `test).get!.value!
+  -- let e' ← (transform e preprocessMono).run {
+  --   mono := .emptyWithCapacity 10,
+  --   given := .emptyWithCapacity 10,
+  --   globalFVars := .emptyWithCapacity 10
+  -- }
+  let e' ← (preprocessMono e).run {
+    mono := .emptyWithCapacity 10,
+    given := .emptyWithCapacity 10,
+    globalFVars := .emptyWithCapacity 10
+  }
+  dbg_trace (← ppExpr e)
+  dbg_trace (← ppExpr e'.1)
+)
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   match e with
@@ -127,3 +220,16 @@ example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n ∧
   constructor
   · exact pow_add' x m n
   · exact add_comm' m n
+
+#eval (do
+  let _ ← withLocalDecl `unused .default (← mkFreshExprMVar none) fun fvar => do
+    addDecl <| Declaration.defnDecl {
+      name := `test,
+      type := mkSort (Level.succ Level.zero),
+      value := mkSort Level.zero,
+      levelParams := [],
+      hints := .opaque,
+      safety := .safe
+    }
+  dbg_trace ((← getEnv).find? `test).isSome
+)

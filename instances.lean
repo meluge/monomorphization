@@ -15,32 +15,34 @@ import Monomorphization.Basic
 
 example (a b : Nat) : a + b = b + a := by
   monomorphize add_comm
-  canonical
+  -- canonical
 
 -- fails
 example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n := by
   monomorphize pow_add
+  have x := fun inst => @HAdd.hAdd Nat Nat Nat inst -- hAdd3
+  -- hadd1, hadd2, hadd3
   -- canonical
+
+#check Lean.FVarId
 
 -- fails
 example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
-  -- canonical [add_comm]
-  rw [add_comm]
+  monomorphize add_comm
+  -- canonical
 
 -- fails
 example (R : Type*) [CommRing R] (x y z : R) : x + y + z = x + z + y := by
-  -- canonical [add_right_comm]
-  rw [add_right_comm]
+  monomorphize add_right_comm
+  -- canonical
 
 
 -- With type class inference
 
 -- fails
 example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
-  have := add_comm (G := ZMod n)
+  monomorphize add_comm
   -- canonical
-  rw [this]
-  sorry
 
 -- fails and hangs
 example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
@@ -51,9 +53,9 @@ example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
 
 -- succeeds
 example (x y : ℝ) : x + y = y + x := by
-  have := add_comm (G := ℝ)
+  monomorphize add_comm
   -- canonical
-  sorry
+
 
 -- succeeds
 example (x y : ℝ) : x + y = y + x := by
