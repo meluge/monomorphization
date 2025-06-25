@@ -12,6 +12,9 @@ structure MonoState where
   given : HashSet Expr
   globalFVars : HashSet FVarId
 
+instance : ToString MonoState where
+  toString s := s!"{s.mono.toList}\n{s.given.toList}"
+
 abbrev MonoM := StateT MonoState MetaM
 
 
@@ -43,9 +46,11 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
         for name in set do
           let constInfo := (env.find? name).get!
           let level ← constInfo.levelParams.mapM (fun _ => mkFreshLevelMVar)
-          let ⟨metas, _, body⟩ ← lambdaMetaTelescope constInfo.value!
+          let instantiated := constInfo.value!.instantiateLevelParams constInfo.levelParams level
+          let ⟨metas, _, body⟩ ← lambdaMetaTelescope instantiated
           if ← isDefEqGuarded e body then
-            return mkAppN (mkConst name level) metas
+            let result := mkAppN (mkConst name level) metas
+            return (← instantiateMVars result)
         -- create new const!
         let level ← info.levelParams.mapM (fun _ => mkFreshLevelMVar)
         let typeInstantiated := info.type.instantiateLevelParams info.levelParams level
@@ -76,33 +81,37 @@ partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr →
     pure (.app (← transform fn f) (← transform arg f))
   | lam name type body info =>
     withLocalDecl name info type fun fvar => do
-      pure (.lam name (← transform type f) (← transform (body.instantiate1 fvar) f) info)
+      pure (.lam name (← transform type f)
+        ((← transform (body.instantiate1 fvar) f).abstract #[fvar]) info)
   | forallE name type body info =>
     withLocalDecl name info type fun fvar => do
-      pure (.forallE name (← transform type f) (← transform (body.instantiate1 fvar) f) info)
+      pure (.forallE name (← transform type f)
+        ((← transform (body.instantiate1 fvar) f).abstract #[fvar]) info)
   | letE name type value body nonDep =>
     withLetDecl name type value fun fvar => do
-      pure (.letE name (← transform type f) (← transform value f) (← transform (body.instantiate1 fvar) f) nonDep)
+      pure (.letE name (← transform type f) (← transform value f)
+        ((← transform (body.instantiate1 fvar) f).abstract #[fvar]) nonDep)
   | mdata m b => pure (.mdata m (← transform b f))
   | _ => pure e
 
 
-def test := Nat.succ Nat.zero
+def test (a b : Nat) := 0 + 1 + 2
 
 #eval (do
   let e := ((← getEnv).find? `test).get!.value!
-  -- let e' ← (transform e preprocessMono).run {
-  --   mono := .emptyWithCapacity 10,
-  --   given := .emptyWithCapacity 10,
-  --   globalFVars := .emptyWithCapacity 10
-  -- }
-  let e' ← (preprocessMono e).run {
+  let e' ← (transform e preprocessMono).run {
     mono := .emptyWithCapacity 10,
     given := .emptyWithCapacity 10,
     globalFVars := .emptyWithCapacity 10
   }
+  -- let e' ← (preprocessMono e).run {
+  --   mono := .emptyWithCapacity 10,
+  --   given := .emptyWithCapacity 10,
+  --   globalFVars := .emptyWithCapacity 10
+  -- }
   dbg_trace (← ppExpr e)
   dbg_trace (← ppExpr e'.1)
+  dbg_trace e'.2
 )
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
@@ -112,7 +121,7 @@ partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
       if let some info := (← getEnv).find? fn then
         let bs ← getBinders info.type
         let insts ← (bs.indexesOf .instImplicit).filterMapM fun i => do
-          let a := args[i]!
+          let a := args[i]! -- TODO check fully applied
           if a.hasLooseBVars then pure none else some <$> inferType a
         args.foldlM (fun acc a => return acc ∪ (← getInstanceTypes a)) (HashSet.ofList insts)
       else
