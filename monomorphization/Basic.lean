@@ -2,13 +2,18 @@ import Lean
 open Lean Elab Tactic Expr Std
 open Meta hiding transform
 
+structure Mono where
+  id : MVarId
+  levels : List Name
+  assignment : Expr
+
 structure MonoState where
-  mono : HashMap Name (List (Name × Expr))
+  mono : HashMap Name (List Mono)
   given : HashSet Expr
   globalFVars : HashSet FVarId
 
 instance : ToString MonoState where
-  toString s := s!"{s.mono.toList}\n{s.given.toList}"
+  toString s := s!"{s.mono.toList.map (fun x => x.1)}\n{s.given.toList}"
 
 abbrev MonoM := StateT MonoState MetaM
 
@@ -37,39 +42,32 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
           modify (fun s => { s with given := s.given.insert type })
       if args.size == bs.size && !found then
         let set := (← get).mono.getD fn []
-        for ⟨name, value⟩ in set do
-          let constInfo := (env.find? name).get!
-          let level ← constInfo.levelParams.mapM (fun _ => mkFreshLevelMVar)
-          let instantiated := value.instantiateLevelParams constInfo.levelParams level
+        for ⟨id, levels, value⟩ in set do
+          let mvarlevels ← mkFreshLevelMVars levels.length
+          let instantiated := value.instantiateLevelParams levels mvarlevels
           let ⟨metas, _, body⟩ ← lambdaMetaTelescope instantiated
           if ← isDefEqGuarded e body then
-            let result := mkAppN (mkConst name level) metas
-            return (← instantiateMVars result)
+            return mkAppN (.mvar id) (← metas.mapM instantiateMVars)
         -- create new const!
-        let level ← info.levelParams.mapM (fun _ => mkFreshLevelMVar)
-        let typeInstantiated := info.type.instantiateLevelParams info.levelParams level
+        let mvarlevels ← mkFreshLevelMVars info.levelParams.length
+        let typeInstantiated := info.type.instantiateLevelParams info.levelParams mvarlevels
         let ⟨metas, _, _⟩ ← forallMetaTelescope typeInstantiated
         let instImplicit' := (bs.zip metas).filterMap fun ⟨binfo, a⟩ =>
           if binfo.isInstImplicit then some a else none
         for ⟨arg, meta⟩ in instImplicit.zip instImplicit' do
           if !(← isDefEq arg meta) then
             panic! s!"Invalid application of {fn}"
-        let value := mkAppN (mkConst fn level) metas
+        let value := mkAppN (mkConst fn mvarlevels) metas
         let abstractResult ← abstractMVars (← instantiateMVars value)
         let name := fn.num set.length
-        modify (fun s => { s with mono := s.mono.insert fn (⟨name, abstractResult.expr⟩ :: set) })
-        let _ ← addDecl <| Declaration.axiomDecl {
-          name, levelParams := [] /- TODO-/,
-          type := (← inferType abstractResult.expr),
-          -- value := abstractResult.expr,
-          isUnsafe := false
-          -- hints := .opaque,
-          -- safety := .safe
-        }
-        -- let _ ← enableRealizationsForConst name
+
+        let mvar := (← mkFreshExprMVar (← inferType abstractResult.expr) .syntheticOpaque name).mvarId!
+
+        modify (fun s => { s with mono := s.mono.insert fn (
+            ⟨mvar, abstractResult.paramNames.toList, abstractResult.expr⟩ :: set)
+          })
         let _ ← isDefEq value e
-        let result := mkAppN (mkConst name level) abstractResult.mvars
-        return (← instantiateMVars result)
+        return mkAppN (.mvar mvar) (← abstractResult.mvars.mapM instantiateMVars)
   pure e
 
 def preprocess (e : Expr) : MonoM Expr := do
@@ -95,19 +93,19 @@ partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr →
   | _ => pure e
 
 
--- def test (a b : Nat) := 0 + 1 + 2
-
--- #eval (do
---   let e := ((← getEnv).find? `test).get!.value!
---   let e' ← (transform e preprocessMono).run {
---     mono := .emptyWithCapacity 10,
---     given := .emptyWithCapacity 10,
---     globalFVars := .emptyWithCapacity 10
---   }
---   dbg_trace (← ppExpr e)
---   dbg_trace (← ppExpr e'.1)
---   -- dbg_trace e'.2
--- )
+def test (a b : Nat) := 0 + 1 + 2
+-- set_option pp.explicit true
+#eval (do
+  let e := ((← getEnv).find? `test).get!.value!
+  let e' ← (transform e preprocessMono).run {
+    mono := .emptyWithCapacity 10,
+    given := .emptyWithCapacity 10,
+    globalFVars := .emptyWithCapacity 10
+  }
+  dbg_trace (← ppExpr e)
+  dbg_trace (← ppExpr e'.1)
+  -- dbg_trace e'.2
+)
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   match e with
@@ -213,3 +211,4 @@ syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 | _ => throwUnsupportedSyntax
 
 #check Meta.abstractMVars
+#check mkFreshExprMVar
