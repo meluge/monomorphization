@@ -79,3 +79,10 @@ example (R : Type*) [CommRing R] (x y z : R) : x + y + z = x + z + y := by
 example (a b : Nat) (c d : ℤ) : ↑(a + b) = c + d := by
   monomorphize HAdd.hAdd
   sorry
+
+
+axiom contrived [Finite α] [HAdd α α α] : Unit
+
+example (a b : Nat) : a + b = b + a := by
+  monomorphize [contrived]
+  sorry

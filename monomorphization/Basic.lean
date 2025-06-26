@@ -124,9 +124,11 @@ partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   | mdata _ b | lam _ _ b _ | letE _ _ _ b _ => getInstanceTypes b
   | _ => return ∅
 
-partial def unify (todo : List Expr) (given : List Expr) (cb : MetaM AbstractionResult) : MetaM (List AbstractionResult) := do
+partial def unify (todo : List Expr) (given : List Expr) (cb : MetaM (Option Expr)) : MetaM (List Expr) := do
   match todo with
-  | [] => return [← cb]
+  | [] => match ← cb with
+    | some e => return [e]
+    | none => return []
   | type :: todo =>
     let type ← instantiateMVars type
     if type.hasMVar then
@@ -164,10 +166,11 @@ def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
   unify todo.toList (← get).given.toList do
     for mvar in instImplicit do
       let mty ← instantiateMVars (← mvar.mvarId!.getType)
-      try
-        let inst ← synthInstance mty
+      match ← trySynthInstance mty with
+      | .some inst => do
         mvar.mvarId!.assign inst
-      catch _ => pure ()
+      | .none => return none
+      | .undef => pure ()
 
     let appliedExpr := mkAppN (Expr.const name levels) mvars
     let instantiated ← instantiateMVars appliedExpr
