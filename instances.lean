@@ -1,6 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
-import Canonical
+-- import Canonical
 import Monomorphization.Basic
 
 -- fails and hangs

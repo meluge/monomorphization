@@ -8,9 +8,9 @@ structure Mono where
   assignment : Expr
 
 structure MonoState where
-  mono : HashMap Name (List Mono)
-  given : HashSet Expr
-  globalFVars : HashSet FVarId
+  mono : HashMap Name (List Mono) := .emptyWithCapacity 8
+  given : HashSet Expr := .emptyWithCapacity 8
+  globalFVars : HashSet FVarId := .emptyWithCapacity 0
 
 instance : ToString MonoState where
   toString s := s!"{s.mono.toList.map (fun x => x.1)}\n{s.given.toList}"
@@ -98,19 +98,15 @@ partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr →
   | _ => pure e
 
 
-def test (a b : Nat) := 0 + 1 + 2
--- set_option pp.explicit true
-#eval (do
-  let e := ((← getEnv).find? `test).get!.value!
-  let e' ← (transform e preprocessMono).run {
-    mono := .emptyWithCapacity 10,
-    given := .emptyWithCapacity 10,
-    globalFVars := .emptyWithCapacity 10
-  }
-  dbg_trace (← ppExpr e)
-  dbg_trace (← ppExpr e'.1)
-  -- dbg_trace e'.2
-)
+-- def test (a b : Nat) := 0 + 1 + 2
+
+-- #eval (do
+--   let e := ((← getEnv).find? `test).get!.value!
+--   let e' ← (transform e preprocessMono).run {}
+--   dbg_trace (← ppExpr e)
+--   dbg_trace (← ppExpr e'.1)
+--   -- dbg_trace e'.2
+-- )
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   match e with
@@ -151,17 +147,13 @@ def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo))
     Expr.lam n d b bi
   | e, _ => e
 
-def monomorphizeCore (goal : MVarId) (id : Syntax) :
-    MetaM (List MVarId) := goal.withContext do
+def monomorphizeCore (goal : MVarId) (id : Syntax) : MonoM MVarId := goal.withContext do
   let constName ← resolveGlobalConstNoOverload id
   let constInfo ← getConstInfo constName
-  let goalType ← goal.getType
 
   let levels ← constInfo.levelParams.mapM (fun _ => mkFreshLevelMVar)
 
   let typeInstantiated := constInfo.type.instantiateLevelParams constInfo.levelParams levels
-
-  let given := (← getInstanceTypes goalType).toList
   let (mvars, binders, body) ← forallMetaTelescopeReducing typeInstantiated
 
   let instImplicit := (mvars.zip binders).filterMap fun ⟨m, binfo⟩ =>
@@ -170,7 +162,7 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) :
   let instImplicitTypes ← instImplicit.mapM (fun mvar => do mvar.mvarId!.getType)
   let todo := (← getInstanceTypes body).insertMany instImplicitTypes.toList
 
-  let abstResults ← unify todo.toList given do
+  let results ← unify todo.toList (← get).given.toList do
     for mvar in instImplicit do
       let mty ← instantiateMVars (← mvar.mvarId!.getType)
       try
@@ -180,37 +172,33 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) :
 
     let appliedExpr := mkAppN (Expr.const constName levels) mvars
     let instantiated ← instantiateMVars appliedExpr
-    abstractMVars instantiated
-
-  let newGoal ← abstResults.foldlM (fun goal abstrResult => do
+    let abstrResult ← abstractMVars instantiated
     let binfos := abstrResult.mvars.map (fun mvar =>
       (mvars.idxOf? mvar).map (fun idx => binders[idx]!)
     )
+    pure (updateLambdaBinderInfos (abstrResult.expr) binfos.toList)
 
-    let withBinders := updateLambdaBinderInfos (abstrResult.expr) binfos.toList
-
+  results.foldlM (fun goal result => do
     let newName := constName.modifyBase fun s => Name.mkSimple (toString s ++ "'")
-    pure (← goal.note newName withBinders).2
+    pure (← goal.note newName result).2
   ) goal
-  return [newGoal]
 
-def monomorphizeMultiple (goal : MVarId) (ids : Array Syntax) : MetaM (List MVarId) := do
-  ids.foldlM (fun currentGoals id => do
-    match currentGoals with
-    | [] => return []
-    | g :: _ => monomorphizeCore g id
-  ) [goal]
+def monomorphizeMultiple (goal : MVarId) (ids : Array Syntax) : MonoM MVarId := do
+  ids.foldlM (fun goal id => do monomorphizeCore goal id) goal
 
 syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
 syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 
 @[tactic monomorphize] def evalMonomorphize : Tactic
-| `(tactic| monomorphize [$ids:ident,*]) => do
-    let idsArray := ids.getElems
-    liftMetaTactic fun g => monomorphizeMultiple g idsArray
+| `(tactic| monomorphize [$ids:ident,*]) =>
+  liftMetaTactic1 fun g => do (monomorphizeMultiple g ids.getElems).run' {
+    given := ← getInstanceTypes (← g.getType)
+  }
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
 | `(tactic| monomorphize $id:ident) =>
-    liftMetaTactic fun g => monomorphizeCore g id
+  liftMetaTactic1 fun g => do (monomorphizeCore g id).run' {
+      given := ← getInstanceTypes (← g.getType)
+  }
 | _ => throwUnsupportedSyntax
