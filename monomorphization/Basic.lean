@@ -70,6 +70,11 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
         return mkAppN (.mvar mvar) (← abstractResult.mvars.mapM instantiateMVars)
   pure e
 
+def exit : MonoM Unit := do
+  (← get).mono.values.flatten.forM (fun mono =>
+    do mono.id.assign mono.assignment
+  )
+
 def preprocess (e : Expr) : MonoM Expr := do
   preprocessMono (← whnf e)
 
@@ -209,6 +214,3 @@ syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 | `(tactic| monomorphize $id:ident) =>
     liftMetaTactic fun g => monomorphizeCore g id
 | _ => throwUnsupportedSyntax
-
-#check Meta.abstractMVars
-#check mkFreshExprMVar
