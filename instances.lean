@@ -1,6 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
--- import Canonical
+import Canonical
 import Monomorphization.Basic
 
 -- fails and hangs
@@ -15,7 +15,7 @@ import Monomorphization.Basic
 
 example (a b : Nat) : a + b = b + a := by
   monomorphize add_comm
-  -- canonical
+  -- exact add_comm a b
 
 -- fails
 example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n := by
@@ -73,4 +73,9 @@ example (R : Type*) [CommRing R] (x : R) (m n : Nat) : x^(m + n) = x^m * x^n := 
 example (R : Type*) [CommRing R] (x y z : R) : x + y + z = x + z + y := by
   have := add_right_comm (G := R)
   -- canonical
+  sorry
+
+
+example (a b : Nat) (c d : ℤ) : ↑(a + b) = c + d := by
+  monomorphize HAdd.hAdd
   sorry

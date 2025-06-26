@@ -147,9 +147,8 @@ def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo))
     Expr.lam n d b bi
   | e, _ => e
 
-def monomorphizeCore (goal : MVarId) (id : Syntax) : MonoM MVarId := goal.withContext do
-  let constName ← resolveGlobalConstNoOverload id
-  let constInfo ← getConstInfo constName
+def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
+  let constInfo ← getConstInfo name
 
   let levels ← constInfo.levelParams.mapM (fun _ => mkFreshLevelMVar)
 
@@ -162,7 +161,7 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) : MonoM MVarId := goal.withCo
   let instImplicitTypes ← instImplicit.mapM (fun mvar => do mvar.mvarId!.getType)
   let todo := (← getInstanceTypes body).insertMany instImplicitTypes.toList
 
-  let results ← unify todo.toList (← get).given.toList do
+  unify todo.toList (← get).given.toList do
     for mvar in instImplicit do
       let mty ← instantiateMVars (← mvar.mvarId!.getType)
       try
@@ -170,7 +169,7 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) : MonoM MVarId := goal.withCo
         mvar.mvarId!.assign inst
       catch _ => pure ()
 
-    let appliedExpr := mkAppN (Expr.const constName levels) mvars
+    let appliedExpr := mkAppN (Expr.const name levels) mvars
     let instantiated ← instantiateMVars appliedExpr
     let abstrResult ← abstractMVars instantiated
     let binfos := abstrResult.mvars.map (fun mvar =>
@@ -178,27 +177,32 @@ def monomorphizeCore (goal : MVarId) (id : Syntax) : MonoM MVarId := goal.withCo
     )
     pure (updateLambdaBinderInfos (abstrResult.expr) binfos.toList)
 
-  results.foldlM (fun goal result => do
-    let newName := constName.modifyBase fun s => Name.mkSimple (toString s ++ "'")
-    pure (← goal.note newName result).2
-  ) goal
-
-def monomorphizeMultiple (goal : MVarId) (ids : Array Syntax) : MonoM MVarId := do
-  ids.foldlM (fun goal id => do monomorphizeCore goal id) goal
+def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
+  let instTypes ← getInstanceTypes (← goal.getType)
+  let consts ← ids.mapM resolveGlobalConstNoOverload
+  let exprs : List (Name × Expr) ← (consts.toList.flatMapM (fun (const : Name) => do
+    let test ← (monomorphizeImpl const).run' { given := instTypes}
+    pure (test.mapIdx (fun idx expr =>
+      let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
+      ⟨name, expr⟩
+    ))
+  ))
+  exprs.foldlM (fun goal ⟨name, result⟩ => do
+    pure (← goal.note name result).2) goal
 
 syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
 syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 
 @[tactic monomorphize] def evalMonomorphize : Tactic
 | `(tactic| monomorphize [$ids:ident,*]) =>
-  liftMetaTactic1 fun g => do (monomorphizeMultiple g ids.getElems).run' {
-    given := ← getInstanceTypes (← g.getType)
-  }
+  liftMetaTactic1 fun goal =>
+    goal.withContext do
+      monomorphizeTactic goal ids.getElems
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
 | `(tactic| monomorphize $id:ident) =>
-  liftMetaTactic1 fun g => do (monomorphizeCore g id).run' {
-      given := ← getInstanceTypes (← g.getType)
-  }
+  liftMetaTactic1 fun goal =>
+    goal.withContext do
+      monomorphizeTactic goal #[id]
 | _ => throwUnsupportedSyntax
