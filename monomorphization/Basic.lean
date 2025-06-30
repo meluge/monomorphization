@@ -193,6 +193,54 @@ def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
   exprs.foldlM (fun goal ⟨name, result⟩ => do
     pure (← goal.note name result).2) goal
 
+def monomorphizeTactic1 (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
+  let instTypes ← goal.withContext <| getInstanceTypes (← goal.getType)
+  let consts ← ids.mapM resolveGlobalConstNoOverload
+  let exprs : List (Name × Expr) ← (consts.toList.flatMapM (fun (const : Name) => do
+    let test ← (monomorphizeImpl const).run' { given := instTypes}
+    pure (test.mapIdx (fun idx expr =>
+      let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
+      ⟨name, expr⟩
+    ))
+  ))
+
+  let mut currentGoal := goal
+  let mut fvarMap : HashMap Name FVarId := {}
+
+  for pair in consts.zip (Array.mk exprs) do
+    let const := pair.1
+    let monoName := pair.2.1
+    let monoExpr := pair.2.2
+
+    let (fvarId, newGoal) ← currentGoal.note monoName monoExpr
+    currentGoal := newGoal
+    fvarMap := fvarMap.insert const fvarId
+
+  currentGoal.withContext do
+    let preprocessMonoForGoal (e : Expr) : MonoM Expr := do
+      let fn := e.getAppFn
+      let args := e.getAppArgs
+      match fn with
+      | Expr.const name _ =>
+        match fvarMap.get? name with
+        | some fvarId =>
+          let env ← getEnv
+          if let some info := env.find? name then
+            let bs := (← getBinders info.type).toArray
+            let nonInstArgs := (bs.zip args).filterMap fun ⟨binfo, arg⟩ =>
+              if binfo.isExplicit then some arg else none
+            return mkAppN (Expr.fvar fvarId) nonInstArgs
+          else
+            preprocessMono e
+        | none => preprocessMono e
+      | _ => preprocessMono e
+
+    let goalType ← currentGoal.getType
+    let (newGoalType, _) ← (transform goalType preprocessMonoForGoal).run {}
+
+    let newGoalType ← instantiateMVars newGoalType
+    currentGoal.replaceTargetDefEq newGoalType
+
 syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
 syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 
@@ -200,12 +248,17 @@ syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 | `(tactic| monomorphize [$ids:ident,*]) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal ids.getElems
+      monomorphizeTactic1 goal ids.getElems
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
 | `(tactic| monomorphize $id:ident) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal #[id]
+      monomorphizeTactic1 goal #[id]
 | _ => throwUnsupportedSyntax
+
+
+example (a b : Nat) : a + b = b + a := by
+  monomorphize [HAdd.hAdd]
+  sorry
