@@ -75,9 +75,6 @@ def exit : MonoM Unit := do
     do mono.id.assign mono.assignment
   )
 
-def preprocess (e : Expr) : MonoM Expr := do
-  preprocessMono (← whnf e)
-
 partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr → n Expr) : n Expr := do
   match ← f e with
   | app fn arg =>
@@ -96,17 +93,6 @@ partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr →
         ((← transform (body.instantiate1 fvar) f).abstract #[fvar]) nonDep)
   | mdata m b => pure (.mdata m (← transform b f))
   | _ => pure e
-
-
--- def test (a b : Nat) := 0 + 1 + 2
-
--- #eval (do
---   let e := ((← getEnv).find? `test).get!.value!
---   let e' ← (transform e preprocessMono).run {}
---   dbg_trace (← ppExpr e)
---   dbg_trace (← ppExpr e'.1)
---   -- dbg_trace e'.2
--- )
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   match e with
@@ -195,15 +181,20 @@ def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (
   goal.assign goal'
   pure goal'.mvarId!
 
-def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
+def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (canonicalize : Bool) : MetaM MVarId := do
   let consts ← ids.mapM resolveGlobalConstNoOverload
 
   let ctx ← getLCtx
   let globalFVars := ctx.getFVarIds.foldl (fun acc id => acc.insert id) ∅
+  let insts ← getInstanceTypes (← goal.getType)
 
-  let initialState : MonoState := {globalFVars := globalFVars }
+  let initialState : MonoState := {
+    globalFVars := globalFVars, given := insts
+  }
+
   let (transformedGoal, collectedMonoSt) ← (do
-    transformMVar goal (fun e => transform e preprocessMono)
+    transformMVar goal (fun e =>
+      if canonicalize then transform e preprocessMono else pure e)
   ).run initialState
 
   let (finalGoal, _) ← (do
@@ -215,49 +206,55 @@ def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
     )
 
     let goalWithExprs ← List.foldlM (fun goal (name, result) => do
-      let noteResult ← MVarId.note goal name result
-      pure noteResult.2
+      pure (← MVarId.note goal name result).2
     ) transformedGoal exprs
 
     let finalGoal ← List.foldlM (fun goal (pair : Name × List Mono) => do
       let (_, monos) := pair
       List.foldlM (fun goal mono => do
-        let name := ((← getMCtx).getDecl (mono : Mono).id).userName
+        let name := ((← getMCtx).getDecl (mono:Mono).id).userName
         let noteResult ← MVarId.note goal name mono.assignment
         mono.id.assign (.fvar noteResult.1)
         pure noteResult.2
       ) goal monos
     ) goalWithExprs collectedMonoSt.mono.toList
 
+    if canonicalize then do
+      let goalType ← finalGoal.getType
+      let newGoalType ← transform goalType preprocessMono
+      finalGoal.replaceTargetDefEq newGoalType
+    else
+      pure finalGoal
+    exit
     pure finalGoal
   ).run collectedMonoSt
+
 
   pure finalGoal
 
 
-
-syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
-syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
+syntax (name := monomorphize) "monomorphize " ("+" "canonicalize ")? "[" ident,* "]" : tactic
+syntax (name := monomorphizeSingle) "monomorphize " ("+" "canonicalize ")? ident : tactic
 
 @[tactic monomorphize] def evalMonomorphize : Tactic
-| `(tactic| monomorphize [$ids:ident,*]) =>
+| `(tactic| monomorphize $[+canonicalize%$canon?]? [$ids:ident,*]) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal ids.getElems
+      monomorphizeTactic goal ids.getElems canon?.isSome
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
-| `(tactic| monomorphize $id:ident) =>
+| `(tactic| monomorphize $[+canonicalize%$canon?]? $id:ident) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal #[id]
+      monomorphizeTactic goal #[id] canon?.isSome
 | _ => throwUnsupportedSyntax
 
 
 example (m n : Nat) : m + n = n + m := by
-  monomorphize []
+  monomorphize [HAdd.hAdd]
   sorry
 
--- add exit call
--- test on more complex examples
--- add a flag +canonicalize
+example (m n : Nat) : m + n = n + m := by
+  monomorphize +canonicalize []
+  sorry
