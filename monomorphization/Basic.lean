@@ -72,7 +72,8 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
 
 def exit : MonoM Unit := do
   (← get).mono.values.flatten.forM (fun mono =>
-    do mono.id.assign mono.assignment
+    do if !(← mono.id.isAssigned) then
+        mono.id.assign mono.assignment
   )
 
 partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr → n Expr) : n Expr := do
@@ -166,7 +167,7 @@ def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
     )
     pure (updateLambdaBinderInfos (abstrResult.expr) binfos.toList)
 
-def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (transform : Expr → n Expr) : n MVarId := do
+def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (transform : Expr → n Expr) : n (Expr × LocalContext) := do
   let decl := ((← getMCtx).findDecl? goal).get!
   let type ← transform decl.type
 
@@ -177,84 +178,61 @@ def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (
     else pure decl
   }
 
-  let goal' ← mkFreshExprMVarAt lctx decl.localInstances type
-  goal.assign goal'
-  pure goal'.mvarId!
+  pure (type, lctx)
 
-def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (canonicalize : Bool) : MetaM MVarId := do
+structure MonoConfig where
+  canonicalize : Bool := true
+
+declare_config_elab monoConfig MonoConfig
+
+def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (config : MonoConfig) : MonoM MVarId := do
+  let _ ← transformMVar goal (fun e => transform e preprocessMono) -- all instances are in the MonoM
+
   let consts ← ids.mapM resolveGlobalConstNoOverload
+  -- we don't foldlM immediately because we need the index.
+  let exprs : List (Name × Expr) ← consts.toList.flatMapM (fun const => do
+    let results ← monomorphizeImpl const
+    pure (results.mapIdx (fun idx expr =>
+      let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
+      (name, expr)))
+  )
 
-  let ctx ← getLCtx
-  let globalFVars := ctx.getFVarIds.foldl (fun acc id => acc.insert id) ∅
-  let insts ← getInstanceTypes (← goal.getType)
+  let goal ← exprs.foldlM (fun goal (name, result) => do
+    pure (← MVarId.note goal name result).2
+  ) goal
 
-  let initialState : MonoState := {
-    globalFVars := globalFVars, given := insts
-  }
-
-  let (transformedGoal, collectedMonoSt) ← (do
-    transformMVar goal (fun e =>
-      if canonicalize then transform e preprocessMono else pure e)
-  ).run initialState
-
-  let (finalGoal, _) ← (do
-    let exprs : List (Name × Expr) ← consts.toList.flatMapM (fun const => do
-      let results ← monomorphizeImpl const
-      pure (results.mapIdx (fun idx expr =>
-        let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
-        (name, expr)))
-    )
-
-    let goalWithExprs ← List.foldlM (fun goal (name, result) => do
-      pure (← MVarId.note goal name result).2
-    ) transformedGoal exprs
-
-    let finalGoal ← List.foldlM (fun goal (pair : Name × List Mono) => do
+  if config.canonicalize then
+    let goal ← (← get).mono.toList.foldlM (fun goal (pair : Name × List Mono) => do
       let (_, monos) := pair
-      List.foldlM (fun goal mono => do
+      monos.foldlM (fun goal mono => do
         let name := ((← getMCtx).getDecl (mono:Mono).id).userName
         let noteResult ← MVarId.note goal name mono.assignment
         mono.id.assign (.fvar noteResult.1)
         pure noteResult.2
-      ) goal monos
-    ) goalWithExprs collectedMonoSt.mono.toList
+      ) goal
+    ) goal
 
-    if canonicalize then do
-      let goalType ← finalGoal.getType
-      let newGoalType ← transform goalType preprocessMono
-      finalGoal.replaceTargetDefEq newGoalType
-    else
-      pure finalGoal
-    exit
-    pure finalGoal
-  ).run collectedMonoSt
+    let (type, lctx) ← transformMVar goal (fun e => transform e preprocessMono)
+    let _ ← exit
+    let _ ← goal.modifyLCtx (fun _ => lctx)
+    goal.replaceTargetDefEq type
+  else pure goal
 
-
-  pure finalGoal
-
-
-syntax (name := monomorphize) "monomorphize " ("+" "canonicalize ")? "[" ident,* "]" : tactic
-syntax (name := monomorphizeSingle) "monomorphize " ("+" "canonicalize ")? ident : tactic
+syntax (name := monomorphize) "monomorphize " Parser.Tactic.optConfig "[" ident,* "]" : tactic
+syntax (name := monomorphizeSingle) "monomorphize " Parser.Tactic.optConfig ident : tactic
 
 @[tactic monomorphize] def evalMonomorphize : Tactic
-| `(tactic| monomorphize $[+canonicalize%$canon?]? [$ids:ident,*]) =>
+| `(tactic| monomorphize $config [$ids:ident,*]) => do
+  let config ← monoConfig config
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal ids.getElems canon?.isSome
+      (monomorphizeTactic goal ids.getElems config).run' { globalFVars := HashSet.ofArray (← getLCtx).getFVarIds }
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
-| `(tactic| monomorphize $[+canonicalize%$canon?]? $id:ident) =>
+| `(tactic| monomorphize $config $id:ident) => do
+  let config ← monoConfig config
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic goal #[id] canon?.isSome
+      (monomorphizeTactic goal #[id] config).run' { globalFVars := HashSet.ofArray (← getLCtx).getFVarIds }
 | _ => throwUnsupportedSyntax
-
-
-example (m n : Nat) : m + n = n + m := by
-  monomorphize [HAdd.hAdd]
-  sorry
-
-example (m n : Nat) : m + n = n + m := by
-  monomorphize +canonicalize []
-  sorry
