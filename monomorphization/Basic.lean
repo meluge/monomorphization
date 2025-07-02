@@ -71,12 +71,12 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
         let binfos := abstractResult.mvars.map (fun mvar =>
           (metas.idxOf? mvar).map (fun idx => binders[idx]!)
         )
-        let value := updateLambdaBinderInfos abstractResult.expr binfos.toList
+        let expr := updateLambdaBinderInfos abstractResult.expr binfos.toList
 
-        let mvar := (← mkFreshExprMVar (← inferType value) .syntheticOpaque name).mvarId!
+        let mvar := (← mkFreshExprMVar (← inferType expr) .syntheticOpaque name).mvarId!
 
         modify (fun s => { s with mono := s.mono.insert fn (
-            ⟨mvar, abstractResult.paramNames.toList, value⟩ :: set)
+            ⟨mvar, abstractResult.paramNames.toList, expr⟩ :: set)
           })
         let _ ← isDefEq value e
         return mkAppN (.mvar mvar) (← abstractResult.mvars.mapM instantiateMVars)
