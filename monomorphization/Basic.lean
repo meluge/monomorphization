@@ -180,66 +180,61 @@ def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
     )
     pure (updateLambdaBinderInfos (abstrResult.expr) binfos.toList)
 
+def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (transform : Expr → n Expr) : n MVarId := do
+  let decl := ((← getMCtx).findDecl? goal).get!
+  let type ← transform decl.type
+
+  let lctx := { decl.lctx with decls := ← decl.lctx.decls.mapM fun decl => do decl.mapM fun decl => do
+    let decl := decl.setType (← transform decl.type)
+    if let some value := decl.value? then
+      pure (decl.setValue (← transform value))
+    else pure decl
+  }
+
+  let goal' ← mkFreshExprMVarAt lctx decl.localInstances type
+  goal.assign goal'
+  pure goal'.mvarId!
+
 def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
-  let instTypes ← getInstanceTypes (← goal.getType)
   let consts ← ids.mapM resolveGlobalConstNoOverload
-  let exprs : List (Name × Expr) ← (consts.toList.flatMapM (fun (const : Name) => do
-    let test ← (monomorphizeImpl const).run' { given := instTypes}
-    pure (test.mapIdx (fun idx expr =>
-      let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
-      ⟨name, expr⟩
-    ))
-  ))
-  exprs.foldlM (fun goal ⟨name, result⟩ => do
-    pure (← goal.note name result).2) goal
 
-def monomorphizeTactic1 (goal : MVarId) (ids : Array Syntax) : MetaM MVarId := do
-  let instTypes ← goal.withContext <| getInstanceTypes (← goal.getType)
-  let consts ← ids.mapM resolveGlobalConstNoOverload
-  let exprs : List (Name × Expr) ← (consts.toList.flatMapM (fun (const : Name) => do
-    let test ← (monomorphizeImpl const).run' { given := instTypes}
-    pure (test.mapIdx (fun idx expr =>
-      let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
-      ⟨name, expr⟩
-    ))
-  ))
+  let ctx ← getLCtx
+  let globalFVars := ctx.getFVarIds.foldl (fun acc id => acc.insert id) ∅
 
-  let mut currentGoal := goal
-  let mut fvarMap : HashMap Name FVarId := {}
+  let initialState : MonoState := {globalFVars := globalFVars }
+  let (transformedGoal, collectedMonoSt) ← (do
+    transformMVar goal (fun e => transform e preprocessMono)
+  ).run initialState
 
-  for pair in consts.zip (Array.mk exprs) do
-    let const := pair.1
-    let monoName := pair.2.1
-    let monoExpr := pair.2.2
+  let (finalGoal, _) ← (do
+    let exprs : List (Name × Expr) ← consts.toList.flatMapM (fun const => do
+      let results ← monomorphizeImpl const
+      pure (results.mapIdx (fun idx expr =>
+        let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
+        (name, expr)))
+    )
 
-    let (fvarId, newGoal) ← currentGoal.note monoName monoExpr
-    currentGoal := newGoal
-    fvarMap := fvarMap.insert const fvarId
+    let goalWithExprs ← List.foldlM (fun goal (name, result) => do
+      let noteResult ← MVarId.note goal name result
+      pure noteResult.2
+    ) transformedGoal exprs
 
-  currentGoal.withContext do
-    let preprocessMonoForGoal (e : Expr) : MonoM Expr := do
-      let fn := e.getAppFn
-      let args := e.getAppArgs
-      match fn with
-      | Expr.const name _ =>
-        match fvarMap.get? name with
-        | some fvarId =>
-          let env ← getEnv
-          if let some info := env.find? name then
-            let bs := (← getBinders info.type).toArray
-            let nonInstArgs := (bs.zip args).filterMap fun ⟨binfo, arg⟩ =>
-              if binfo.isExplicit then some arg else none
-            return mkAppN (Expr.fvar fvarId) nonInstArgs
-          else
-            preprocessMono e
-        | none => preprocessMono e
-      | _ => preprocessMono e
+    let finalGoal ← List.foldlM (fun goal (pair : Name × List Mono) => do
+      let (_, monos) := pair
+      List.foldlM (fun goal mono => do
+        let name := ((← getMCtx).getDecl (mono : Mono).id).userName
+        let noteResult ← MVarId.note goal name mono.assignment
+        mono.id.assign (.fvar noteResult.1)
+        pure noteResult.2
+      ) goal monos
+    ) goalWithExprs collectedMonoSt.mono.toList
 
-    let goalType ← currentGoal.getType
-    let (newGoalType, _) ← (transform goalType preprocessMonoForGoal).run {}
+    pure finalGoal
+  ).run collectedMonoSt
 
-    let newGoalType ← instantiateMVars newGoalType
-    currentGoal.replaceTargetDefEq newGoalType
+  pure finalGoal
+
+
 
 syntax (name := monomorphize) "monomorphize " "[" ident,* "]" : tactic
 syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
@@ -248,17 +243,21 @@ syntax (name := monomorphizeSingle) "monomorphize " ident : tactic
 | `(tactic| monomorphize [$ids:ident,*]) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic1 goal ids.getElems
+      monomorphizeTactic goal ids.getElems
 | _ => throwUnsupportedSyntax
 
 @[tactic monomorphizeSingle] def evalMonomorphizeSingle : Tactic
 | `(tactic| monomorphize $id:ident) =>
   liftMetaTactic1 fun goal =>
     goal.withContext do
-      monomorphizeTactic1 goal #[id]
+      monomorphizeTactic goal #[id]
 | _ => throwUnsupportedSyntax
 
 
-example (a b : Nat) : a + b = b + a := by
-  monomorphize [HAdd.hAdd]
+example (m n : Nat) : m + n = n + m := by
+  monomorphize []
   sorry
+
+-- add exit call
+-- test on more complex examples
+-- add a flag +canonicalize
