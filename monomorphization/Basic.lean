@@ -23,6 +23,14 @@ partial def getBinders (e : Expr) : MetaM (List BinderInfo) := do
   | mdata _ b | lam _ _ b _ | app _ b | letE _ _ _ b _ => getBinders b
   | _                      => return []
 
+def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo)) : Expr :=
+  match e, binderInfos? with
+  | Expr.lam n d b bi, newBi? :: binderInfos? =>
+    let b  := updateLambdaBinderInfos b binderInfos?
+    let bi := newBi?.getD bi
+    Expr.lam n d b bi
+  | e, _ => e
+
 partial def preprocessMono (e : Expr) : MonoM Expr := do
   let (fn, args) := Expr.getAppFnArgs e
   let env ← getEnv
@@ -51,7 +59,7 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
         -- create new const!
         let mvarlevels ← mkFreshLevelMVars info.levelParams.length
         let typeInstantiated := info.type.instantiateLevelParams info.levelParams mvarlevels
-        let ⟨metas, _, _⟩ ← forallMetaTelescope typeInstantiated
+        let ⟨metas, binders, _⟩ ← forallMetaTelescope typeInstantiated
         let instImplicit' := (bs.zip metas).filterMap fun ⟨binfo, a⟩ =>
           if binfo.isInstImplicit then some a else none
         for ⟨arg, meta⟩ in instImplicit.zip instImplicit' do
@@ -59,12 +67,16 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
             panic! s!"Invalid application of {fn}"
         let value := mkAppN (mkConst fn mvarlevels) metas
         let abstractResult ← abstractMVars (← instantiateMVars value)
-        let name := fn.num set.length
+        let name := Name.mkSimple ((fn.num set.length).toStringWithSep "_" true)
+        let binfos := abstractResult.mvars.map (fun mvar =>
+          (metas.idxOf? mvar).map (fun idx => binders[idx]!)
+        )
+        let value := updateLambdaBinderInfos abstractResult.expr binfos.toList
 
-        let mvar := (← mkFreshExprMVar (← inferType abstractResult.expr) .syntheticOpaque name).mvarId!
+        let mvar := (← mkFreshExprMVar (← inferType value) .syntheticOpaque name).mvarId!
 
         modify (fun s => { s with mono := s.mono.insert fn (
-            ⟨mvar, abstractResult.paramNames.toList, abstractResult.expr⟩ :: set)
+            ⟨mvar, abstractResult.paramNames.toList, value⟩ :: set)
           })
         let _ ← isDefEq value e
         return mkAppN (.mvar mvar) (← abstractResult.mvars.mapM instantiateMVars)
@@ -113,9 +125,7 @@ partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
 
 partial def unify (todo : List Expr) (given : List Expr) (cb : MetaM (Option Expr)) : MetaM (List Expr) := do
   match todo with
-  | [] => match ← cb with
-    | some e => return [e]
-    | none => return []
+  | [] => pure (← cb).toList
   | type :: todo =>
     let type ← instantiateMVars type
     if type.hasMVar then
@@ -127,14 +137,6 @@ partial def unify (todo : List Expr) (given : List Expr) (cb : MetaM (Option Exp
       if !branches.isEmpty then
         return branches.flatten
     unify todo given cb
-
-def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo)) : Expr :=
-  match e, binderInfos? with
-  | Expr.lam n d b bi, newBi? :: binderInfos? =>
-    let b  := updateLambdaBinderInfos b binderInfos?
-    let bi := newBi?.getD bi
-    Expr.lam n d b bi
-  | e, _ => e
 
 def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
   let constInfo ← getConstInfo name
@@ -165,7 +167,7 @@ def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
     let binfos := abstrResult.mvars.map (fun mvar =>
       (mvars.idxOf? mvar).map (fun idx => binders[idx]!)
     )
-    pure (updateLambdaBinderInfos (abstrResult.expr) binfos.toList)
+    pure (updateLambdaBinderInfos abstrResult.expr binfos.toList)
 
 def transformMVar [Monad n] [MonadLiftT MetaM n] [MonadMCtx n] (goal : MVarId) (transform : Expr → n Expr) : n (Expr × LocalContext) := do
   let decl := ((← getMCtx).findDecl? goal).get!
