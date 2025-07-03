@@ -23,3 +23,17 @@ example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
 -- fails
 example (R : Type*) [CommRing R] (x y z : R) : x + y + z = x + z + y := by
   monomorphize [add_right_comm]
+
+def test : ℝ := 10
+
+
+open Lean
+#eval (do
+
+  let e := ((← getEnv).find? `test).get!.value!
+  dbg_trace e
+)
+
+#print test._proof_1
+-- test._proof_1 is a non-instance but typeclass constant
+-- its value is an instance instNatAtLeastTwo. Unfold it!
