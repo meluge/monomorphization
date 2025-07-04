@@ -57,10 +57,13 @@ def toName : Expr → MetaM Name
 | .const name _ => pure name
 | e => panic! s!"toName applied to non-head symbol: {e}"
 
-partial def registerInstance (s : Expr) : MonoM Unit := do
+def onlyGlobalFVars (e : Expr) : MonoM Bool := do
   let globalFVars := (← get).globalFVars
   let p := fun x => !globalFVars.contains x
-  if !s.hasAnyFVar p then
+  return !e.hasAnyFVar p
+
+partial def registerInstance (s : Expr) : MonoM Unit := do
+  if ← onlyGlobalFVars s then
     let ⟨levels, _, type⟩ ← abstractMVars (← inferType s)
     modify (fun s => { s with given := s.given.insert ⟨type, levels.toList⟩ })
 
@@ -96,15 +99,16 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
             return mkAppN (.mvar id) (← metas.mapM instantiateMVars)
 
         if let some skeleton ← skeleton e then
-          let skeleton ← instantiateMVars skeleton
-          let ⟨paramNames, mvars, abstracted⟩ ← abstractMVars skeleton
-          let name := Name.mkSimple (((← toName fn).num set.length).toStringWithSep "_" true)
-          let mvar := (← mkFreshExprMVar (← inferType
-            (abstracted.instantiateLevelParams paramNames.toList (← mkFreshLevelMVars paramNames.size))) .syntheticOpaque name).mvarId!
-          modify (fun s => { s with mono := s.mono.insert fn (⟨mvar, paramNames.toList, abstracted⟩ :: set) })
-          let success ← isDefEq skeleton e
-          assert! success
-          return ← instantiateMVars (mkAppN (.mvar mvar) mvars)
+          if  ← onlyGlobalFVars skeleton then
+            let skeleton ← instantiateMVars skeleton
+            let ⟨paramNames, mvars, abstracted⟩ ← abstractMVars skeleton
+            let name := Name.mkSimple (((← toName fn).num set.length).toStringWithSep "_" true)
+            let mvar := (← mkFreshExprMVar (← inferType
+              (abstracted.instantiateLevelParams paramNames.toList (← mkFreshLevelMVars paramNames.size))) .syntheticOpaque name).mvarId!
+            modify (fun s => { s with mono := s.mono.insert fn (⟨mvar, paramNames.toList, abstracted⟩ :: set) })
+            let success ← isDefEq skeleton e
+            assert! success
+            return ← instantiateMVars (mkAppN (.mvar mvar) mvars)
     return e
 
 def exit : MonoM Unit := do
@@ -131,19 +135,6 @@ partial def transform [Monad n] [MonadControlT MetaM n] (e : Expr) (f : Expr →
         ((← transform (body.instantiate1 fvar) f).abstract #[fvar]) nonDep)
   | mdata m b => pure (.mdata m (← transform b f))
   | _ => pure e
-
-def x := #v[0] ++ #v[1]
-
-#eval (do
-  let e := ((← getEnv).find? `x).get!.value!
-  let test := ← (do
-   let e ← transform e preprocessMono
-  --  let _ ← exit
-   return (← instantiateMVars e)
-  ).run' {}
-  dbg_trace test
-)
-
 
 partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   match e with
@@ -278,38 +269,3 @@ syntax (name := monomorphizeSingle) "monomorphize " Parser.Tactic.optConfig iden
     goal.withContext do
       (monomorphizeTactic goal #[id] config).run' { globalFVars := HashSet.ofArray (← getLCtx).getFVarIds }
 | _ => throwUnsupportedSyntax
-
-
-def test := #v[0] ++ #v[1]
-
-def testing: MetaM Unit := do
-  let hole ← mkFreshExprMVar (mkConst ``Nat)
-  let type := mkApp2 (← mkConstWithFreshMVarLevels ``OfNat) (mkConst ``Nat) hole
-  let attempt ← trySynthInstance type
-  match attempt with
-  | LOption.some inst => dbg_trace "{inst}"
-  | LOption.none => dbg_trace "none"
-  | _ => dbg_trace "error"
-
--- #eval (do
---   let e := ((← getEnv).find? `test).get!.value!
---   withApp e fun fn args => do
---     dbg_trace (← synthInstance (← inferType (← skeleton args[3]!)))
--- )
--- should `given` store types of instances, or values of instances? Should they be skeletons or not?
--- types, non-skeletons (current)
--- types, skeletons (synthInstance can work with skeleton-types) ✓ OfNat Nat 0 -> ∀ (n : Nat) . OfNat Nat n
-
--- non-consts at the head. getAppFnArgs only works with consts, withApp which works for non-const
--- eta elongation issues
--- for skeleton, StateT (HashMap MVarId BinderInfo) MonoM (nvm)
--- upgrade given to (Expr × List Name)
--- globalFVars on the skeleton.
-
-#eval (do
-  let e := (mkConst ``OfNat [Level.zero])
-  let e' := (mkConst ``OfNat [Level.succ Level.zero])
-  dbg_trace (e == e')
-)
-
-#check getLocalInstances
