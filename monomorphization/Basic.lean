@@ -66,7 +66,7 @@ partial def registerInstance (s : Expr) : MonoM Unit := do
 
 partial def skeleton (e : Expr) : MonoM (Option Expr) := do
   withApp e fun fn args => do
-    if let some (fn, type, levels) ← asHead fn then
+    if let some (_, type, levels) ← asHead fn then
       let (metas, binders, _) ← forallMetaTelescopeReducing
         (type.instantiateLevelParams levels (← mkFreshLevelMVars levels.length))
       if metas.size != args.size then return none -- eta check.
@@ -99,7 +99,8 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
           let skeleton ← instantiateMVars skeleton
           let ⟨paramNames, mvars, abstracted⟩ ← abstractMVars skeleton
           let name := Name.mkSimple (((← toName fn).num set.length).toStringWithSep "_" true)
-          let mvar := (← mkFreshExprMVar (← inferType abstracted) .syntheticOpaque name).mvarId!
+          let mvar := (← mkFreshExprMVar (← inferType
+            (abstracted.instantiateLevelParams paramNames.toList (← mkFreshLevelMVars paramNames.size))) .syntheticOpaque name).mvarId!
           modify (fun s => { s with mono := s.mono.insert fn (⟨mvar, paramNames.toList, abstracted⟩ :: set) })
           let success ← isDefEq skeleton e
           assert! success
@@ -168,7 +169,7 @@ partial def unify (todo : List Expr) (given : List Abstracted) (cb : MetaM (Opti
     if type.hasMVar then
       let branches ← given.filterMapM fun (inst : Abstracted) => do
         withoutModifyingMCtx do
-          let (_, _, inst) ← forallMetaTelescopeReducing
+          let (_, _, inst) ← lambdaMetaTelescope
             (inst.expr.instantiateLevelParams inst.levels (← mkFreshLevelMVars inst.levels.length))
           if ← isDefEqGuarded type inst then
             pure (some (← unify todo given cb))
@@ -246,7 +247,7 @@ def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (config : MonoConfig
     let goal ← (← get).mono.toList.foldlM (fun goal pair => do
       let (_, monos) := pair
       monos.foldlM (fun goal mono => do
-        let name := ((← getMCtx).getDecl (mono:Mono).id).userName
+        let name := ((← getMCtx).getDecl mono.id).userName
         let noteResult ← MVarId.note goal name mono.assignment
         mono.id.assign (.fvar noteResult.1)
         pure noteResult.2
