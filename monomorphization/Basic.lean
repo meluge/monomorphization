@@ -67,6 +67,15 @@ partial def registerInstance (s : Expr) : MonoM Unit := do
     let ⟨levels, _, type⟩ ← abstractMVars (← inferType s)
     modify (fun s => { s with given := s.given.insert ⟨type, levels.toList⟩ })
 
+partial def exposeInstance (e : Expr) : MetaM Expr := do
+  let (name, args) := getAppFnArgs e
+  let env ← getEnv
+  if let some info := env.find? name then
+    if !isGlobalInstance env name then
+      if let some value := info.value? then
+        return ← exposeInstance (← whnfR (mkAppN value args))
+  return e
+
 partial def skeleton (e : Expr) : MonoM (Option Expr) := do
   withApp e fun fn args => do
     if let some (_, type, levels) ← asHead fn then
@@ -75,7 +84,7 @@ partial def skeleton (e : Expr) : MonoM (Option Expr) := do
       if metas.size != args.size then return none -- eta check.
       for i in [0:binders.size] do
         if binders[i]!.isInstImplicit then
-          if let some skeleton ← skeleton args[i]! then
+          if let some skeleton ← skeleton (← exposeInstance args[i]!) then
             -- globalInstances if const check.
             let _ ← registerInstance skeleton
             let success ← isDefEq metas[i]! skeleton
