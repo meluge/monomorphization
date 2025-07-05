@@ -23,3 +23,10 @@ example (n : Nat) (x : ZMod n) : x + 2 = 2 + x := by
 -- fails
 example (R : Type*) [CommRing R] (x y z : R) : x + y + z = x + z + y := by
   monomorphize [add_right_comm]
+
+
+def ten : ℝ := 10
+
+example : ten = ten := by
+  unfold ten
+  monomorphize []

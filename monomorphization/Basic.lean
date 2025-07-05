@@ -2,18 +2,31 @@ import Lean
 open Lean Elab Tactic Expr Std
 open Meta hiding transform
 
+structure Abstracted where
+  expr : Expr
+  levels : List Name
+
+instance : BEq Abstracted where
+  beq := fun x y =>
+    if x.levels.length != y.levels.length then false else
+    let levels := y.levels.map Level.param
+    y.expr == (instantiateLevelParams x.expr x.levels levels)
+
+instance : Hashable Abstracted where
+  hash := fun x => (instantiateLevelParams x.expr x.levels (x.levels.map (fun _ => Level.zero))).hash
+
 structure Mono where
   id : MVarId
   levels : List Name
   assignment : Expr
 
 structure MonoState where
-  mono : HashMap Name (List Mono) := .emptyWithCapacity 8
-  given : HashSet Expr := .emptyWithCapacity 8
+  mono : HashMap Expr (List Mono) := .emptyWithCapacity 8
+  given : HashSet Abstracted := .emptyWithCapacity 8
   globalFVars : HashSet FVarId := .emptyWithCapacity 0
 
 instance : ToString MonoState where
-  toString s := s!"{s.mono.toList.map (fun x => x.1)}\n{s.given.toList}"
+  toString s := s!"{s.mono.toList.map (fun x => x.1)}\n{s.given.toList.map (fun x => x.expr)}"
 
 abbrev MonoM := StateT MonoState MetaM
 
@@ -31,24 +44,61 @@ def updateLambdaBinderInfos (e : Expr) (binderInfos? : List (Option BinderInfo))
     Expr.lam n d b bi
   | e, _ => e
 
-partial def preprocessMono (e : Expr) : MonoM Expr := do
-  let (fn, args) := Expr.getAppFnArgs e
+def asHead : Expr → MetaM (Option (Expr × Expr × List Name))
+| e@(fvar id) | e@(mvar id) => return some (e, ← id.getType, [])
+| const name us => do
+  let info := ((← getEnv).find? name).get!
+  return some (.const name (us.map (fun _ => Level.zero)), info.type, info.levelParams)
+| _ => return none
+
+def toName : Expr → MetaM Name
+| .fvar id => do pure (id.name.updatePrefix (← id.getUserName).getRoot)
+| .mvar id => do pure (id.name.updatePrefix ((← getMCtx).getDecl id).userName)
+| .const name _ => pure name
+| e => panic! s!"toName applied to non-head symbol: {e}"
+
+def onlyGlobalFVars (e : Expr) : MonoM Bool := do
+  let globalFVars := (← get).globalFVars
+  let p := fun x => !globalFVars.contains x
+  return !e.hasAnyFVar p
+
+partial def registerInstance (s : Expr) : MonoM Unit := do
+  if ← onlyGlobalFVars s then
+    let ⟨levels, _, type⟩ ← abstractMVars (← inferType s)
+    modify (fun s => { s with given := s.given.insert ⟨type, levels.toList⟩ })
+
+partial def exposeInstance (e : Expr) : MetaM Expr := do
+  let (name, args) := getAppFnArgs e
   let env ← getEnv
-  if let some info := env.find? fn then
-    let bs := (← getBinders info.type).toArray
-    let instImplicit := (bs.zip args).filterMap fun ⟨binfo, a⟩ =>
-      if binfo.isInstImplicit then some a else none
-    if !instImplicit.isEmpty then
-      let mut found := false
-      let globalFVars := (← get).globalFVars
-      let p := fun x => !globalFVars.contains x
-      for arg in instImplicit do
-        if arg.hasAnyFVar p then
-          found := true
-        else
-          let type ← inferType arg
-          modify (fun s => { s with given := s.given.insert type })
-      if args.size == bs.size && !found then
+  if let some info := env.find? name then
+    if !isGlobalInstance env name then
+      if let some value := info.value? then
+        return ← exposeInstance (← whnfR (mkAppN value args))
+  return e
+
+partial def skeleton (e : Expr) : MonoM (Option Expr) := do
+  withApp e fun fn args => do
+    if let some (_, type, levels) ← asHead fn then
+      let (metas, binders, _) ← forallMetaTelescopeReducing
+        (type.instantiateLevelParams levels (← mkFreshLevelMVars levels.length))
+      if metas.size != args.size then return none -- eta check.
+      for i in [0:binders.size] do
+        if binders[i]!.isInstImplicit then
+          if let some skeleton ← skeleton (← exposeInstance args[i]!) then
+            -- globalInstances if const check.
+            let _ ← registerInstance skeleton
+            let success ← isDefEq metas[i]! skeleton
+            assert! success
+          else return none
+      return ← instantiateMVars (mkAppN fn metas)
+    return none
+
+partial def preprocessMono (e : Expr) : MonoM Expr := do
+  withApp e fun fn _ => do
+    if let some (fn, type, _) ← asHead fn then
+      let hasInstImplicit ← forallTelescopeReducing type (fun xs _ =>
+        do xs.anyM (fun x => do pure (← x.fvarId!.getBinderInfo).isInstImplicit))
+      if hasInstImplicit then
         let set := (← get).mono.getD fn []
         for ⟨id, levels, value⟩ in set do
           let mvarlevels ← mkFreshLevelMVars levels.length
@@ -56,31 +106,19 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
           let ⟨metas, _, body⟩ ← lambdaMetaTelescope instantiated
           if ← isDefEqGuarded e body then
             return mkAppN (.mvar id) (← metas.mapM instantiateMVars)
-        -- create new const!
-        let mvarlevels ← mkFreshLevelMVars info.levelParams.length
-        let typeInstantiated := info.type.instantiateLevelParams info.levelParams mvarlevels
-        let ⟨metas, binders, _⟩ ← forallMetaTelescope typeInstantiated
-        let instImplicit' := (bs.zip metas).filterMap fun ⟨binfo, a⟩ =>
-          if binfo.isInstImplicit then some a else none
-        for ⟨arg, meta⟩ in instImplicit.zip instImplicit' do
-          if !(← isDefEq arg meta) then
-            panic! s!"Invalid application of {fn}"
-        let value := mkAppN (mkConst fn mvarlevels) metas
-        let abstractResult ← abstractMVars (← instantiateMVars value)
-        let name := Name.mkSimple ((fn.num set.length).toStringWithSep "_" true)
-        let binfos := abstractResult.mvars.map (fun mvar =>
-          (metas.idxOf? mvar).map (fun idx => binders[idx]!)
-        )
-        let expr := updateLambdaBinderInfos abstractResult.expr binfos.toList
 
-        let mvar := (← mkFreshExprMVar (← inferType expr) .syntheticOpaque name).mvarId!
-
-        modify (fun s => { s with mono := s.mono.insert fn (
-            ⟨mvar, abstractResult.paramNames.toList, expr⟩ :: set)
-          })
-        let _ ← isDefEq value e
-        return mkAppN (.mvar mvar) (← abstractResult.mvars.mapM instantiateMVars)
-  pure e
+        if let some skeleton ← skeleton e then
+          if  ← onlyGlobalFVars skeleton then
+            let skeleton ← instantiateMVars skeleton
+            let ⟨paramNames, mvars, abstracted⟩ ← abstractMVars skeleton
+            let name := Name.mkSimple (((← toName fn).num set.length).toStringWithSep "_" true)
+            let mvar := (← mkFreshExprMVar (← inferType
+              (abstracted.instantiateLevelParams paramNames.toList (← mkFreshLevelMVars paramNames.size))) .syntheticOpaque name).mvarId!
+            modify (fun s => { s with mono := s.mono.insert fn (⟨mvar, paramNames.toList, abstracted⟩ :: set) })
+            let success ← isDefEq skeleton e
+            assert! success
+            return ← instantiateMVars (mkAppN (.mvar mvar) mvars)
+    return e
 
 def exit : MonoM Unit := do
   (← get).mono.values.flatten.forM (fun mono =>
@@ -123,14 +161,16 @@ partial def getInstanceTypes (e : Expr) : MetaM (HashSet Expr) := do
   | mdata _ b | lam _ _ b _ | letE _ _ _ b _ => getInstanceTypes b
   | _ => return ∅
 
-partial def unify (todo : List Expr) (given : List Expr) (cb : MetaM (Option Expr)) : MetaM (List Expr) := do
+partial def unify (todo : List Expr) (given : List Abstracted) (cb : MetaM (Option Expr)) : MetaM (List Expr) := do
   match todo with
   | [] => pure (← cb).toList
   | type :: todo =>
     let type ← instantiateMVars type
     if type.hasMVar then
-      let branches ← given.filterMapM fun inst => do
+      let branches ← given.filterMapM fun (inst : Abstracted) => do
         withoutModifyingMCtx do
+          let (_, _, inst) ← lambdaMetaTelescope
+            (inst.expr.instantiateLevelParams inst.levels (← mkFreshLevelMVars inst.levels.length))
           if ← isDefEqGuarded type inst then
             pure (some (← unify todo given cb))
           else pure none
@@ -150,7 +190,7 @@ def monomorphizeImpl (name : Name) : MonoM (List Expr) := do
     if binfo.isInstImplicit then some m else none
 
   let instImplicitTypes ← instImplicit.mapM (fun mvar => do mvar.mvarId!.getType)
-  let todo := (← getInstanceTypes body).insertMany instImplicitTypes.toList
+  let todo := (← getInstanceTypes body).insertMany instImplicitTypes.toList -- what are the universe levels of todo?
 
   unify todo.toList (← get).given.toList do
     for mvar in instImplicit do
@@ -204,10 +244,10 @@ def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (config : MonoConfig
   ) goal
 
   if config.canonicalize then
-    let goal ← (← get).mono.toList.foldlM (fun goal (pair : Name × List Mono) => do
+    let goal ← (← get).mono.toList.foldlM (fun goal pair => do
       let (_, monos) := pair
       monos.foldlM (fun goal mono => do
-        let name := ((← getMCtx).getDecl (mono:Mono).id).userName
+        let name := ((← getMCtx).getDecl mono.id).userName
         let noteResult ← MVarId.note goal name mono.assignment
         mono.id.assign (.fvar noteResult.1)
         pure noteResult.2
