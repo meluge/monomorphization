@@ -161,11 +161,7 @@ partial def monoKeyTemplate (e : Expr) : MonoM (Option Expr) := do
     return none
 
 /-Turns type class arguments to metavariables that is either specialized or left alone.-/
-partial def preprocessMono (e : Expr) : MonoM Expr := do
-  let ctx ← getLCtx
-
-  dbg_trace s!"preprocessMono called on: {e}, lctx size: {ctx.size}"
-
+partial def preprocessMono (e : Expr) : MonoM TransformStep := do
   withApp e fun fn _ => do
     if let some (fn, type, _) ← getHeadInfo fn then
       let hasInstImplicit ← forallTelescopeReducing type fun xs _ =>
@@ -178,7 +174,8 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
           let instantiated := specBody.instantiateLevelParams specLevels mvarlevels
           let ⟨metas, _, body⟩ ← lambdaMetaTelescope instantiated
           if ← isDefEqGuarded e body then
-            return mkAppN (.mvar specmVar) (← metas.mapM instantiateMVars)
+            let newExpr ← pure (mkAppN (.mvar specmVar) (← metas.mapM instantiateMVars))
+            return .visit newExpr
 
       /-Else, create new specialization.-/
         if let some monoKeyTemplate ← monoKeyTemplate e then
@@ -196,8 +193,9 @@ partial def preprocessMono (e : Expr) : MonoM Expr := do
             let _ ← addConstants monoKeyTemplate.getUsedConstantsAsSet
             let success ← isDefEq monoKeyTemplate e
             assert! success
-            return ← instantiateMVars (mkAppN (.mvar specMvarId) mvars)
-    return e
+            let newExpr ← instantiateMVars (mkAppN (.mvar specMvarId) mvars)
+            return .visit newExpr
+    return .continue
 
 
 /-Assign metavars to their monomorphized versions.-/
@@ -245,6 +243,7 @@ partial def unifyWithCand (todo : List Expr) (candidates : List UnivAbstracted) 
         return branches.flatten
     unifyWithCand todo candidates cb
 
+/-Generates all possible monomorphization for a given const.-/
 def monomorphizeConst (name : Name) : MonoM (List Expr) := do
 /-First, get the instance implicit arguments of the constant.-/
   let constInfo ← getConstInfo name
@@ -259,6 +258,7 @@ def monomorphizeConst (name : Name) : MonoM (List Expr) := do
   let instImplicit := (mvars.zip binders).filterMap fun ⟨m, binfo⟩ =>
     if binfo.isInstImplicit then some m else none
 
+  /-Filter for inst inst implicit arguments and put them into todo list.-/
   let instImplicitTypes ← instImplicit.mapM fun mvar => do mvar.mvarId!.getType
   let todo := (← getInstanceTypes body).insertMany instImplicitTypes.toList
 
@@ -278,6 +278,7 @@ def monomorphizeConst (name : Name) : MonoM (List Expr) := do
     let binfos := abstrResult.mvars.map fun mvar =>
       (mvars.idxOf? mvar).map fun idx => binders[idx]!
 
+    -- check if it's already in the MonoM.
     let result := updateLambdaBinderInfos abstrResult.expr binfos.toList
 
     let set := (← get).mono.getD (Expr.const name (levels.map fun _ => Level.zero)) []
@@ -286,19 +287,12 @@ def monomorphizeConst (name : Name) : MonoM (List Expr) := do
       if sameLevels == result then
         return none
 
+    -- The proper thing to do is to return the levels, too
     let result := result.instantiateLevelParams abstrResult.paramNames.toList (abstrResult.paramNames.toList.map (fun _ => Level.zero))
 
     let _ ← addConstants result.getUsedConstantsAsSet
 
     return result
-
-
-def monoPreTransform (e : Expr) : MonoM TransformStep := do
-  let e' ← preprocessMono e
-  if e' == e then
-    return .continue
-  else
-    return .visit e'
 
 structure MonoConfig where
   canonicalize : Bool := true
@@ -306,11 +300,15 @@ structure MonoConfig where
 declare_config_elab monoConfig MonoConfig
 
 def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (config : MonoConfig) : MonoM MVarId := do
-  let _ ← transformMVar goal fun e => Meta.transform e (pre := monoPreTransform)
+/-First pass: Replaces type classes with metavars and caches info in the monad-/
+  let _ ← transformMVar goal fun e => Meta.transform e (pre := preprocessMono)
 
+/-We clear the monad if we don't want to canonicalize the goal-/
   if !config.canonicalize then
     modify fun s => { s with mono := .emptyWithCapacity 0 }
 
+/-Process user inputs by creating all monomorphized versions.-/
+/-Name is the new name we create and expr is the monomorphized instance.-/
   let consts ← ids.mapM resolveGlobalConstNoOverload
   -- we don't foldlM immediately because we need the index.
   let exprs : List (Name × Expr) ← consts.toList.flatMapM fun const => do
@@ -319,23 +317,30 @@ def monomorphizeTactic (goal : MVarId) (ids : Array Syntax) (config : MonoConfig
       let name := Name.mkSimple ((const.num idx).toStringWithSep "_" true)
       (name, expr)
 
+/-Add the newly generates monomoprhizations into the context.-/
   let goal ← exprs.foldlM (fun goal (name, result) => do
     pure (← MVarId.note goal name result).2
   ) goal
 
+/-If canonicalize flag is on, we process the goal and monomorphize it.-/
   if config.canonicalize then
     let goal ← (← get).mono.toList.foldlM (fun goal pair => do
       let (_, monos) := pair
       monos.foldlM (fun goal mono => do
+      /-We make a let binding for the specialization.-/
         let name := ((← getMCtx).getDecl mono.id).userName
         let noteResult ← MVarId.note goal name mono.assignment
+        /-And it assigns the metavariable to the newly made binding.-/
         mono.id.assign (.fvar noteResult.1)
         pure noteResult.2
       ) goal
     ) goal
 
-    let (type, lctx) ← transformMVar goal fun e => Meta.transform e (pre := monoPreTransform)
+/-Since now metavariables have value assigned, the second pass actually substitutes teh value.-/
+    let (type, lctx) ← transformMVar goal fun e => Meta.transform e (pre := preprocessMono)
+    /-This checks that all metavariables in the mono state are now assigned.-/
     let _ ← finalizeMonos
+    /-Update goal's local context.-/
     let _ ← goal.modifyLCtx fun _ => lctx
     goal.replaceTargetDefEq type
   else return goal
@@ -354,8 +359,6 @@ syntax (name := monomorphize) "monomorphize " Parser.Tactic.optConfig ("[" ident
     goal.withContext do
       (monomorphizeTactic goal #[] config).run' { globalFVars := HashSet.ofArray (← getLCtx).getFVarIds }
 | _ => throwUnsupportedSyntax
-
-
 
 
 
