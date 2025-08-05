@@ -1,10 +1,9 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.ZMod.Basic
-import Canonical
 import Monomorphization.Basic
 
 example (x : ℝ) : x + 2 = 2 + x := by
-  monomorphize [add_comm]
+  monomorphize  [add_comm]
 
 example (R : Type*) [CommRing R] (x : R) : x + 2 = 2 + x := by
   monomorphize [add_comm]
