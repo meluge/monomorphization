@@ -154,9 +154,24 @@ class ReplWorker:
         return rec, needs_restart
 
 
+def start_with_retry(w, attempts=4):
+    """Start a worker, retrying slow/failed imports instead of dying."""
+    for i in range(attempts):
+        try:
+            w.start()
+            return True
+        except Exception as e:
+            print(f"worker {w.wid}: start attempt {i + 1} failed ({str(e)[:120]})", flush=True)
+            w.kill()
+            time.sleep(15 * (i + 1))
+    return False
+
+
 def worker_loop(wid, env, tasks, results, tac_timeout, grace):
     w = ReplWorker(wid, env)
-    w.start()
+    if not start_with_retry(w):
+        print(f"worker {wid}: giving up after repeated import failures", flush=True)
+        return
     while True:
         try:
             item = tasks.get_nowait()
@@ -172,7 +187,9 @@ def worker_loop(wid, env, tasks, results, tac_timeout, grace):
         results.put(rec)
         if restart:
             w.kill()
-            w.start()
+            if not start_with_retry(w):
+                print(f"worker {wid}: giving up after repeated import failures", flush=True)
+                return
     w.kill()
 
 
