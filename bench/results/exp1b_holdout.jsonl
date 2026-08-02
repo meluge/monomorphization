@@ -578,3 +578,5 @@
 {"name": "BoxIntegral.Prepartition.restrict_boxes_of_le", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
 {"name": "generateFrom_union_isOpen", "mode": "base", "wall_ms": 10088, "phases": [{"name": "canonical", "ms": 10069}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
 {"name": "generateFrom_union_isOpen", "mode": "monop", "wall_ms": 10199, "phases": [{"name": "monomorphize", "ms": 39}, {"name": "canonical", "ms": 10148}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.isOpenImmersion_respectsIso", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.isOpenImmersion_respectsIso", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
