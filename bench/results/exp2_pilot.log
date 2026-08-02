@@ -1,0 +1,14 @@
+population: 130497 problems after filtering
+[10/120] {'fail': 8, 'ok': 2}
+[20/120] {'fail': 18, 'ok': 2}
+[30/120] {'fail': 24, 'ok': 6}
+[40/120] {'fail': 31, 'ok': 8, 'error': 1}
+[50/120] {'fail': 39, 'ok': 10, 'error': 1}
+[60/120] {'fail': 47, 'ok': 10, 'error': 3}
+[70/120] {'fail': 54, 'ok': 12, 'error': 3, 'timeout': 1}
+[80/120] {'fail': 62, 'ok': 14, 'error': 3, 'timeout': 1}
+[90/120] {'fail': 67, 'ok': 15, 'error': 6, 'timeout': 2}
+[100/120] {'fail': 75, 'ok': 15, 'error': 8, 'timeout': 2}
+[110/120] {'fail': 79, 'ok': 21, 'error': 8, 'timeout': 2}
+[120/120] {'fail': 87, 'ok': 23, 'error': 8, 'timeout': 2}
+done: {'fail': 87, 'ok': 23, 'error': 8, 'timeout': 2}

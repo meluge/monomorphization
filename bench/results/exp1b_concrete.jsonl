@@ -1,0 +1,600 @@
+{"name": "measurable_coe_nnreal_real", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "measurable_coe_nnreal_real", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "unitInterval.fract_mem", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "unitInterval.fract_mem", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MonCat.forget_preservesLimits", "mode": "base", "wall_ms": 781, "phases": [{"name": "canonical", "ms": 763}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "MonCat.forget_preservesLimits", "mode": "monop", "wall_ms": 806, "phases": [{"name": "monomorphize", "ms": 32}, {"name": "canonical", "ms": 756}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.lt_log_of_lt_opow", "mode": "monop", "wall_ms": 3752, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Ordinal.lt_log_of_lt_opow", "mode": "base", "wall_ms": 4831, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Equiv.surjective_comp", "mode": "base", "wall_ms": 10067, "phases": [{"name": "canonical", "ms": 10049}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Equiv.surjective_comp", "mode": "monop", "wall_ms": 10067, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 10025}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "EReal.natCast_eq_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EReal.natCast_eq_iff", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Computable.nat_bodd", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Computable.nat_bodd", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SimplexCategory.instEpiFactorThruImage", "mode": "monop", "wall_ms": 47, "phases": [{"name": "monomorphize", "ms": 30}], "err": "monomorphize: unknown free variable '_fvar.558'", "suggestion": null, "status": "fail"}
+{"name": "SimplexCategory.instEpiFactorThruImage", "mode": "base", "wall_ms": 164, "phases": [{"name": "canonical", "ms": 152}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.log_neg_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.log_neg_iff", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SetTheory.PGame.nim_zero_equiv", "mode": "monop", "wall_ms": 170, "phases": [{"name": "monomorphize", "ms": 27}, {"name": "canonical", "ms": 116}], "err": null, "suggestion": "exact SetTheory_PGame_Equiv_isEmpty_0 (SetTheory.PGame.nim OfNat_ofNat_0)", "status": "ok"}
+{"name": "SetTheory.PGame.nim_zero_equiv", "mode": "base", "wall_ms": 320, "phases": [{"name": "canonical", "ms": 308}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.iInf_mul_of_nonneg", "mode": "monop", "wall_ms": 1687, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.iInf_mul_of_nonneg", "mode": "base", "wall_ms": 2903, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.rpow_lt_rpow_of_exponent_lt", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.rpow_lt_rpow_of_exponent_lt", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.descFactorial_eq_prod_range", "mode": "base", "wall_ms": 2789, "phases": [{"name": "canonical", "ms": 2774}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "UniformOnFun.inf_eq", "mode": "base", "wall_ms": 5722, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Nat.descFactorial_eq_prod_range", "mode": "monop", "wall_ms": 10087, "phases": [{"name": "monomorphize", "ms": 27}, {"name": "canonical", "ms": 10049}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "UniformOnFun.inf_eq", "mode": "monop", "wall_ms": 3338, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "BoxIntegral.TaggedPrepartition.mem_filter", "mode": "base", "wall_ms": 27267, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "BoxIntegral.TaggedPrepartition.mem_filter", "mode": "monop", "wall_ms": 28318, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Hyperreal.IsSt.not_infinite", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Hyperreal.IsSt.not_infinite", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Stonean.instHasExplicitPullbacksOfInclusionsExtremallyDisconnectedCarrier", "mode": "base", "wall_ms": 34691, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Stonean.instHasExplicitPullbacksOfInclusionsExtremallyDisconnectedCarrier", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "LSeries.term_delta", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "LSeries.term_delta", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SetTheory.PGame.moveRight_neg_symm'", "mode": "monop", "wall_ms": 40, "phases": [{"name": "monomorphize", "ms": 25}], "err": "monomorphize: unknown free variable '_fvar.222'", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.moveRight_neg_symm'", "mode": "base", "wall_ms": 60, "phases": [{"name": "canonical", "ms": 50}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Cardinal.continuum_power_aleph0", "mode": "base", "wall_ms": 1348, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Cardinal.continuum_power_aleph0", "mode": "monop", "wall_ms": 2384, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Hyperreal.IsSt.add", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Hyperreal.IsSt.add", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AddCommMonCat.forget_isCorepresentable", "mode": "base", "wall_ms": 397, "phases": [{"name": "canonical", "ms": 381}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AddCommMonCat.forget_isCorepresentable", "mode": "monop", "wall_ms": 552, "phases": [{"name": "monomorphize", "ms": 31}, {"name": "canonical", "ms": 507}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.setOf_mem_list_eq_singleton_of_nodup", "mode": "base", "wall_ms": 10033, "phases": [{"name": "canonical", "ms": 10026}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.setOf_mem_list_eq_singleton_of_nodup", "mode": "monop", "wall_ms": 10083, "phases": [{"name": "monomorphize", "ms": 30}, {"name": "canonical", "ms": 10046}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ModuleCat.forget\u2082_addCommGroup_full", "mode": "monop", "wall_ms": 99, "phases": [{"name": "monomorphize", "ms": 91}], "err": "monomorphize: unknown free variable '_fvar.5199'", "suggestion": null, "status": "fail"}
+{"name": "Multiset.lt_cons_self", "mode": "base", "wall_ms": 341, "phases": [{"name": "canonical", "ms": 335}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Multiset.lt_cons_self", "mode": "monop", "wall_ms": 10039, "phases": [{"name": "monomorphize", "ms": 6}, {"name": "canonical", "ms": 10028}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.HasLiftingProperty.transfiniteComposition.SqStruct.mk.inj", "mode": "base", "wall_ms": 977, "phases": [{"name": "canonical", "ms": 960}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.HasLiftingProperty.transfiniteComposition.SqStruct.mk.inj", "mode": "monop", "wall_ms": 970, "phases": [{"name": "monomorphize", "ms": 45}, {"name": "canonical", "ms": 919}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Bool.instWellFoundedLT", "mode": "base", "wall_ms": 51, "phases": [{"name": "canonical", "ms": 47}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Bool.instWellFoundedLT", "mode": "monop", "wall_ms": 45, "phases": [{"name": "monomorphize", "ms": 10}, {"name": "canonical", "ms": 31}], "err": null, "suggestion": "exact Finite_to_wellFoundedLT_0", "status": "ok"}
+{"name": "List.id_traverse", "mode": "base", "wall_ms": 38, "phases": [{"name": "canonical", "ms": 33}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "List.id_traverse", "mode": "monop", "wall_ms": 54, "phases": [{"name": "monomorphize", "ms": 11}, {"name": "canonical", "ms": 39}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ModuleCat.forget\u2082_addCommGroup_full", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.instHasTerminalScheme", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENat.le_lift_iff", "mode": "base", "wall_ms": 93, "phases": [{"name": "canonical", "ms": 82}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENat.le_lift_iff", "mode": "monop", "wall_ms": 23, "phases": [{"name": "monomorphize", "ms": 18}], "err": "monomorphize: unknown free variable '_fvar.183'", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.instHasTerminalScheme", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.Nonempty.encard_pos", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CommGrp.forget_reflects_isos", "mode": "base", "wall_ms": 241, "phases": [{"name": "canonical", "ms": 227}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CommGrp.forget_reflects_isos", "mode": "monop", "wall_ms": 256, "phases": [{"name": "monomorphize", "ms": 46}, {"name": "canonical", "ms": 206}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Filter.generate_eq_biInf", "mode": "base", "wall_ms": 1365, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Set.Nonempty.encard_pos", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Filter.generate_eq_biInf", "mode": "monop", "wall_ms": 1359, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "MeasureTheory.measure_symmDiff_eq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.measure_symmDiff_eq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SemiNormedGrp\u2081.hasZeroObject", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SemiNormedGrp\u2081.hasZeroObject", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Cardinal.mk_le_iff_forall_finset_subset_card_le", "mode": "base", "wall_ms": 32728, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Cardinal.mk_le_iff_forall_finset_subset_card_le", "mode": "monop", "wall_ms": 32636, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Nat.xgcdAux_P", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.xgcdAux_P", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Dynamics.coverMincard_image_le", "mode": "base", "wall_ms": 33360, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Dynamics.coverMincard_image_le", "mode": "monop", "wall_ms": 33257, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "integral_exp_neg_Ioi", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "integral_exp_neg_Ioi", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.image_coe_Ioi", "mode": "base", "wall_ms": 10160, "phases": [{"name": "canonical", "ms": 10097}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENNReal.image_coe_Ioi", "mode": "monop", "wall_ms": 10334, "phases": [{"name": "monomorphize", "ms": 45}, {"name": "canonical", "ms": 10239}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "UpperHalfPlane.contMDiffAt_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "UpperHalfPlane.contMDiffAt_iff", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Fin.finsetImage_natAdd_Icc", "mode": "base", "wall_ms": 32687, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.finsetImage_natAdd_Icc", "mode": "monop", "wall_ms": 32387, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Circle.norm_coe", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Circle.norm_coe", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.iInter_ge_eq_iInter_nat_add", "mode": "base", "wall_ms": 1331, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Set.iInter_ge_eq_iInter_nat_add", "mode": "monop", "wall_ms": 1359, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "SimpleGraph.IsCycles.other_adj_of_adj", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SimpleGraph.IsCycles.other_adj_of_adj", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.arg_pow_coe_angle", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.arg_pow_coe_angle", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Composition.eq_single_iff_length", "mode": "base", "wall_ms": 121, "phases": [{"name": "canonical", "ms": 108}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Composition.eq_single_iff_length", "mode": "monop", "wall_ms": 31, "phases": [{"name": "monomorphize", "ms": 26}], "err": "monomorphize: unknown free variable '_fvar.829'", "suggestion": null, "status": "fail"}
+{"name": "Matroid.IsMinor.eq_of_ground_subset", "mode": "base", "wall_ms": 1335, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Matroid.IsMinor.eq_of_ground_subset", "mode": "monop", "wall_ms": 1394, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Composition.lt_sizeUpTo_index_succ", "mode": "base", "wall_ms": 2190, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Composition.lt_sizeUpTo_index_succ", "mode": "monop", "wall_ms": 2477, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.continuousAt_const_rpow'", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.continuousAt_const_rpow'", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ArithmeticFunction.vonMangoldt.abscissaOfAbsConv_residueClass_le_one", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ArithmeticFunction.vonMangoldt.abscissaOfAbsConv_residueClass_le_one", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Int.negOnePow_two_mul", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Int.negOnePow_two_mul", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.continuous_log", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.continuous_log", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CategoryTheory.instIsConnectedWidePullbackShape", "mode": "base", "wall_ms": 497, "phases": [{"name": "canonical", "ms": 480}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.instIsConnectedWidePullbackShape", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.ofReal_pow", "mode": "base", "wall_ms": 57, "phases": [{"name": "canonical", "ms": 38}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.ofReal_pow", "mode": "monop", "wall_ms": 10107, "phases": [{"name": "monomorphize", "ms": 42}, {"name": "canonical", "ms": 10031}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "EReal.exp_strictMono", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EReal.exp_strictMono", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CongruenceSubgroup.IsCongruenceSubgroup.finiteIndex", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CongruenceSubgroup.IsCongruenceSubgroup.finiteIndex", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.lt_factorial_self", "mode": "base", "wall_ms": 10120, "phases": [{"name": "canonical", "ms": 10070}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.lt_factorial_self", "mode": "monop", "wall_ms": 10142, "phases": [{"name": "monomorphize", "ms": 61}, {"name": "canonical", "ms": 10045}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.take_addCases_right", "mode": "base", "wall_ms": 150, "phases": [{"name": "canonical", "ms": 138}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.take_addCases_right", "mode": "monop", "wall_ms": 38, "phases": [{"name": "monomorphize", "ms": 31}], "err": "monomorphize: unknown free variable '_fvar.1008'", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.lsub_typein", "mode": "monop", "wall_ms": 104, "phases": [{"name": "monomorphize", "ms": 90}], "err": "monomorphize: unknown free variable '_fvar.3909'", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.lsub_typein", "mode": "base", "wall_ms": 14315, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Composition.sizeUpTo_index_le", "mode": "base", "wall_ms": 2175, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Composition.sizeUpTo_index_le", "mode": "monop", "wall_ms": 2529, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "AlgebraicGeometry.Scheme.Opens.opensRange_\u03b9", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.Opens.opensRange_\u03b9", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.sin_nat_mul_pi", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.sin_nat_mul_pi", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ArithmeticFunction.vonMangoldt.residueClass_le", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Equiv.Perm.fin_5_not_solvable", "mode": "base", "wall_ms": 1565, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ArithmeticFunction.vonMangoldt.residueClass_le", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Equiv.Perm.fin_5_not_solvable", "mode": "monop", "wall_ms": 1816, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Matroid.isBasis_ground_iff", "mode": "base", "wall_ms": 87, "phases": [{"name": "canonical", "ms": 73}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Matroid.isBasis_ground_iff", "mode": "monop", "wall_ms": 111, "phases": [{"name": "monomorphize", "ms": 22}, {"name": "canonical", "ms": 84}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.rpow_lt_rpow_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.rpow_lt_rpow_iff", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.iSup_mul", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.iSup_mul", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.zero_div", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.zero_div", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.LocallyRingedSpace.stalkMap_germ_assoc", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.LocallyRingedSpace.stalkMap_germ_assoc", "mode": "monop", "wall_ms": 105, "phases": [{"name": "monomorphize", "ms": 83}], "err": "monomorphize: invalid projection\n  U.1\nfrom type\n  ?TopologicalSpace_Opens_0 Y.toTopCat", "suggestion": null, "status": "fail"}
+{"name": "contDiffAt_abs", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "contDiffAt_abs", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.contDiffAt_log", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.contDiffAt_log", "mode": "monop", "wall_ms": 35002, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "OneHom.coe_copy_eq", "mode": "base", "wall_ms": 10092, "phases": [{"name": "canonical", "ms": 10039}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "OneHom.coe_copy_eq", "mode": "monop", "wall_ms": 10203, "phases": [{"name": "monomorphize", "ms": 52}, {"name": "canonical", "ms": 10092}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Int.dist_eq'", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Int.dist_eq'", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Int.card_Ioo_of_lt", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Int.card_Ioo_of_lt", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.ncard_union_add_ncard_inter", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.ncard_union_add_ncard_inter", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AddCircle.instProperlyDiscontinuousVAddSubtypeAddOppositeRealMemAddSubgroupOpZmultiples", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AddCircle.instProperlyDiscontinuousVAddSubtypeAddOppositeRealMemAddSubgroupOpZmultiples", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.ModEq.of_dvd", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.ModEq.of_dvd", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EisensteinSeries.norm_le_tsum_norm", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EisensteinSeries.norm_le_tsum_norm", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PMF.toOuterMeasure_apply_finset", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PMF.toOuterMeasure_apply_finset", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "intervalAverage_congr_codiscreteWithin", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "intervalAverage_congr_codiscreteWithin", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.ofReal_comp_nsmul", "mode": "base", "wall_ms": 122, "phases": [{"name": "canonical", "ms": 104}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.ofReal_comp_nsmul", "mode": "monop", "wall_ms": 140, "phases": [{"name": "monomorphize", "ms": 42}, {"name": "canonical", "ms": 94}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "MeasureTheory.integral_toReal", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.integral_toReal", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Acc.rank_lt_of_rel", "mode": "base", "wall_ms": 2273, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Acc.rank_lt_of_rel", "mode": "monop", "wall_ms": 2639, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "AEMeasurable.ennreal_toNNReal", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AEMeasurable.ennreal_toNNReal", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ordinal.enum_le_enum'", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ordinal.enum_le_enum'", "mode": "monop", "wall_ms": 155, "phases": [{"name": "monomorphize", "ms": 136}], "err": "monomorphize: unknown free variable '_fvar.5197'", "suggestion": null, "status": "fail"}
+{"name": "Fin.finsetImage_addNat_Ioo", "mode": "base", "wall_ms": 32523, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.finsetImage_addNat_Ioo", "mode": "monop", "wall_ms": 32559, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ZMod.ne_zero_of_gcd_eq_one", "mode": "base", "wall_ms": 35005, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ZMod.ne_zero_of_gcd_eq_one", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EReal.lt_neg_comm", "mode": "base", "wall_ms": 120, "phases": [{"name": "canonical", "ms": 103}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "EReal.lt_neg_comm", "mode": "monop", "wall_ms": 209, "phases": [{"name": "monomorphize", "ms": 19}, {"name": "canonical", "ms": 185}], "err": null, "suggestion": "exact fun {a b} \u21a6\n  Eq.rec (motive := fun a_1 t \u21a6 LT_lt_0 a_1 (Neg_neg_0 b) \u2194 LT_lt_0 b (Neg_neg_0 a)) EReal_neg_lt_neg_iff_0\n    (neg_neg_0 a)", "status": "ok"}
+{"name": "Complex.two_cos", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.two_cos", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.sub_lt_self_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.sub_lt_self_iff", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.union_diff_left", "mode": "base", "wall_ms": 10103, "phases": [{"name": "canonical", "ms": 10048}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.union_diff_left", "mode": "monop", "wall_ms": 10290, "phases": [{"name": "monomorphize", "ms": 48}, {"name": "canonical", "ms": 10187}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.iInter\u2082_subset_of_subset", "mode": "base", "wall_ms": 1378, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Set.iInter\u2082_subset_of_subset", "mode": "monop", "wall_ms": 1345, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.cons_mem_piFinset_cons", "mode": "base", "wall_ms": 1800, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.cons_mem_piFinset_cons", "mode": "monop", "wall_ms": 64, "phases": [{"name": "monomorphize", "ms": 46}], "err": "monomorphize: unknown free variable '_fvar.635'", "suggestion": null, "status": "fail"}
+{"name": "HurwitzZeta.completedHurwitzZetaEven_residue_zero", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "HurwitzZeta.completedHurwitzZetaEven_residue_zero", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.ofCauchy_sub", "mode": "monop", "wall_ms": 80, "phases": [{"name": "monomorphize", "ms": 65}], "err": "monomorphize: unknown free variable '_fvar.951'", "suggestion": null, "status": "fail"}
+{"name": "catalan_three", "mode": "base", "wall_ms": 10040, "phases": [{"name": "canonical", "ms": 10036}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.ofCauchy_sub", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "catalan_three", "mode": "monop", "wall_ms": 10075, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 10029}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "PartENat.add_one_le_iff_lt", "mode": "base", "wall_ms": 10128, "phases": [{"name": "canonical", "ms": 10094}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "PartENat.add_one_le_iff_lt", "mode": "monop", "wall_ms": 1413, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Complex.I_pow_three", "mode": "base", "wall_ms": 10086, "phases": [{"name": "canonical", "ms": 10053}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.I_pow_three", "mode": "monop", "wall_ms": 10129, "phases": [{"name": "monomorphize", "ms": 57}, {"name": "canonical", "ms": 10062}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.cpow_add", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.cpow_add", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.LocalRepresentability.yonedaGluedToSheaf_app_toGlued", "mode": "monop", "wall_ms": 162, "phases": [{"name": "monomorphize", "ms": 147}], "err": "monomorphize: unknown free variable '_fvar.8165'", "suggestion": null, "status": "fail"}
+{"name": "CompHaus.hasLimits", "mode": "base", "wall_ms": 719, "phases": [{"name": "canonical", "ms": 715}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CompHaus.hasLimits", "mode": "monop", "wall_ms": 2089, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "AlgebraicGeometry.Scheme.LocalRepresentability.yonedaGluedToSheaf_app_toGlued", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.sum_bool", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.sum_bool", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.PartialMap.fromSpecStalkOfMem_restrict", "mode": "monop", "wall_ms": 1226, "phases": [{"name": "monomorphize", "ms": 1209}], "err": "monomorphize: unknown free variable '_fvar.10134'", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.Scheme.PartialMap.fromSpecStalkOfMem_restrict", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.arccos_lt_pi_div_two", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.arccos_lt_pi_div_two", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Mathlib.Meta.Positivity.log_pos_of_isNat", "mode": "base", "wall_ms": 35006, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Mathlib.Meta.Positivity.log_pos_of_isNat", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.nth_strictMono", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.nth_strictMono", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.isPiSystem_squareCylinders", "mode": "base", "wall_ms": 33573, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "MeasureTheory.isPiSystem_squareCylinders", "mode": "monop", "wall_ms": 33707, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Finsupp.mem_toMultiset", "mode": "base", "wall_ms": 33615, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Finsupp.mem_toMultiset", "mode": "monop", "wall_ms": 72, "phases": [{"name": "monomorphize", "ms": 52}], "err": "monomorphize: unknown free variable '_fvar.1305'", "suggestion": null, "status": "fail"}
+{"name": "ExpGrowth.expGrowthInf_const", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ExpGrowth.expGrowthInf_const", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.top_sub", "mode": "base", "wall_ms": 111, "phases": [{"name": "canonical", "ms": 95}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENNReal.top_sub", "mode": "monop", "wall_ms": 10110, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 10048}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Cardinal.aleph0_power_aleph0", "mode": "base", "wall_ms": 1440, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Cardinal.aleph0_power_aleph0", "mode": "monop", "wall_ms": 1333, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "FreeAddMagma.instLawfulMonad", "mode": "base", "wall_ms": 81, "phases": [{"name": "canonical", "ms": 64}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "FreeAddMagma.instLawfulMonad", "mode": "monop", "wall_ms": 3518, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "SetTheory.PGame.moveLeft_lf", "mode": "base", "wall_ms": 10205, "phases": [{"name": "canonical", "ms": 10141}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.moveLeft_lf", "mode": "monop", "wall_ms": 10347, "phases": [{"name": "monomorphize", "ms": 45}, {"name": "canonical", "ms": 10252}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SSet.Truncated.Path.ext'_iff", "mode": "monop", "wall_ms": 96, "phases": [{"name": "monomorphize", "ms": 79}], "err": "monomorphize: unknown free variable '_fvar.2463'", "suggestion": null, "status": "fail"}
+{"name": "Set.subsingleton_coe", "mode": "base", "wall_ms": 27, "phases": [{"name": "canonical", "ms": 24}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.subsingleton_coe", "mode": "monop", "wall_ms": 30, "phases": [{"name": "monomorphize", "ms": 9}, {"name": "canonical", "ms": 16}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Matroid.delete_contract_delete", "mode": "base", "wall_ms": 1377, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "SSet.Truncated.Path.ext'_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Matroid.delete_contract_delete", "mode": "monop", "wall_ms": 1763, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.coe_covBy_iff", "mode": "base", "wall_ms": 10069, "phases": [{"name": "canonical", "ms": 10036}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.coe_covBy_iff", "mode": "monop", "wall_ms": 10180, "phases": [{"name": "monomorphize", "ms": 35}, {"name": "canonical", "ms": 10129}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Composition.toCompositionAsSet_blocks", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Composition.toCompositionAsSet_blocks", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "StieltjesFunction.iInf_Ioi_eq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "StieltjesFunction.iInf_Ioi_eq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.normSq_nonneg", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.normSq_nonneg", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.interior_compact_eq_empty", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.interior_compact_eq_empty", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.sinh_arsinh", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.sinh_arsinh", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.encard_union_le", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.encard_union_le", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.basicOpen_eq_of_affine", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.basicOpen_eq_of_affine", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PerfectPairing.mk.inj", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PerfectPairing.mk.inj", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AddCommGrp.kernelIsoKer_hom_comp_subtype", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AddCommGrp.kernelIsoKer_hom_comp_subtype", "mode": "monop", "wall_ms": 225, "phases": [{"name": "monomorphize", "ms": 205}], "err": "monomorphize: unknown free variable '_fvar.15676'", "suggestion": null, "status": "fail"}
+{"name": "CircleDeg1Lift.tendsto_atTop", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CircleDeg1Lift.tendsto_atTop", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.tendsto_ae_map", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.tendsto_ae_map", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.lintegral_indicator_le", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.lintegral_indicator_le", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.Infinite.encard_eq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.Infinite.encard_eq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "unitInterval.symm_zero", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "unitInterval.symm_zero", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ring.multichoose_neg_succ", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ring.multichoose_neg_succ", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.tan_div_sqrt_one_add_tan_sq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.tan_div_sqrt_one_add_tan_sq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CategoryTheory.Cat.instHasColimits", "mode": "base", "wall_ms": 1044, "phases": [{"name": "canonical", "ms": 1028}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.Cat.instHasColimits", "mode": "monop", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.isDomain", "mode": "monop", "wall_ms": 98, "phases": [{"name": "monomorphize", "ms": 33}, {"name": "canonical", "ms": 50}], "err": null, "suggestion": "exact NoZeroDivisors_to_isDomain_0", "status": "ok"}
+{"name": "Matroid.contract_ground_subset_ground", "mode": "base", "wall_ms": 65, "phases": [{"name": "canonical", "ms": 61}], "err": null, "suggestion": "exact fun {\u03b1} M C \u2983a\u2984 a_1 \u21a6 a_1.left", "status": "ok"}
+{"name": "Matroid.contract_ground_subset_ground", "mode": "monop", "wall_ms": 1412, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Rat.isDomain", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.diff_inter_self", "mode": "base", "wall_ms": 10118, "phases": [{"name": "canonical", "ms": 10066}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.diff_inter_self", "mode": "monop", "wall_ms": 10187, "phases": [{"name": "monomorphize", "ms": 43}, {"name": "canonical", "ms": 10095}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.Scheme.IdealSheafData.ker_glueDataObj\u03b9_appTop", "mode": "monop", "wall_ms": 5195, "phases": [{"name": "monomorphize", "ms": 5060}], "err": "monomorphize: unknown free variable '_fvar.150716'", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.Scheme.IdealSheafData.ker_glueDataObj\u03b9_appTop", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.binEntropy_le_log_two", "mode": "base", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.union_union_distrib_right", "mode": "base", "wall_ms": 10054, "phases": [{"name": "canonical", "ms": 10039}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.union_union_distrib_right", "mode": "monop", "wall_ms": 10047, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 10018}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.binEntropy_le_log_two", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "UpperHalfPlane.\u03c3_neg", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "UpperHalfPlane.\u03c3_neg", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.log_neg_eq_log", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NatOrdinal.instAddLeftReflectLE", "mode": "base", "wall_ms": 95, "phases": [{"name": "canonical", "ms": 80}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "NatOrdinal.instAddLeftReflectLE", "mode": "monop", "wall_ms": 10118, "phases": [{"name": "monomorphize", "ms": 42}, {"name": "canonical", "ms": 10070}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.log_neg_eq_log", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.factorization_mul", "mode": "base", "wall_ms": 32547, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Nat.factorization_mul", "mode": "monop", "wall_ms": 57, "phases": [{"name": "monomorphize", "ms": 39}], "err": "monomorphize: unknown free variable '_fvar.419'", "suggestion": null, "status": "fail"}
+{"name": "Fin.pos_of_ne_zero", "mode": "base", "wall_ms": 1096, "phases": [{"name": "canonical", "ms": 1091}], "err": null, "suggestion": "exact fun {n} {a} h \u21a6 Nat.pos_of_ne_zero fun a_1 \u21a6 Fin.val_ne_of_ne (fun a \u21a6 h a) a_1", "status": "ok"}
+{"name": "Fin.pos_of_ne_zero", "mode": "monop", "wall_ms": 12, "phases": [{"name": "monomorphize", "ms": 9}], "err": "monomorphize: unknown free variable '_fvar.311'", "suggestion": null, "status": "fail"}
+{"name": "Complex.cos_sub_nat_mul_two_pi", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.cos_sub_nat_mul_two_pi", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Matroid.IsCircuit.contract_diff_isCircuit", "mode": "base", "wall_ms": 143, "phases": [{"name": "canonical", "ms": 120}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Matroid.IsCircuit.contract_diff_isCircuit", "mode": "monop", "wall_ms": 136, "phases": [{"name": "monomorphize", "ms": 30}, {"name": "canonical", "ms": 100}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "tendsto_const_div_pow", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "tendsto_const_div_pow", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Zsqrtd.toReal_injective", "mode": "monop", "wall_ms": 64, "phases": [{"name": "monomorphize", "ms": 47}], "err": "monomorphize: unknown free variable '_fvar.842'", "suggestion": null, "status": "fail"}
+{"name": "Zsqrtd.toReal_injective", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ordinal.blsub_lt_ord_lift", "mode": "base", "wall_ms": 19740, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Ordinal.blsub_lt_ord_lift", "mode": "monop", "wall_ms": 49, "phases": [{"name": "monomorphize", "ms": 35}], "err": "monomorphize: unknown free variable '_fvar.627'", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.lt_nmul_iff", "mode": "base", "wall_ms": 392, "phases": [{"name": "canonical", "ms": 378}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.lt_nmul_iff", "mode": "monop", "wall_ms": 718, "phases": [{"name": "monomorphize", "ms": 14}, {"name": "canonical", "ms": 697}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.map_natAddEmb_Ici", "mode": "monop", "wall_ms": 309, "phases": [{"name": "monomorphize", "ms": 8}, {"name": "canonical", "ms": 295}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.map_natAddEmb_Ici", "mode": "base", "wall_ms": 1957, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "MeasureTheory.ae_restrict_neBot", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.ae_restrict_neBot", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "closure.mono", "mode": "base", "wall_ms": 1369, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "closure.mono", "mode": "monop", "wall_ms": 361, "phases": [{"name": "monomorphize", "ms": 29}, {"name": "canonical", "ms": 319}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.Limits.MonoCoprod.monoCoprodType", "mode": "monop", "wall_ms": 21, "phases": [{"name": "monomorphize", "ms": 14}], "err": "monomorphize: invalid projection\n  c.1\nfrom type\n  ?CategoryTheory_Limits_BinaryCofan_0 A B", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.Limits.MonoCoprod.monoCoprodType", "mode": "base", "wall_ms": 859, "phases": [{"name": "canonical", "ms": 837}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.toRightMovesNim_one_symm", "mode": "monop", "wall_ms": 26, "phases": [{"name": "monomorphize", "ms": 21}], "err": "monomorphize: unknown free variable '_fvar.1304'", "suggestion": null, "status": "fail"}
+{"name": "Composition.ones_sizeUpTo", "mode": "base", "wall_ms": 62, "phases": [{"name": "canonical", "ms": 57}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Composition.ones_sizeUpTo", "mode": "monop", "wall_ms": 10055, "phases": [{"name": "monomorphize", "ms": 9}, {"name": "canonical", "ms": 10038}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.toRightMovesNim_one_symm", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.ofCauchy_ratCast", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.ofCauchy_ratCast", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ProbabilityTheory.isProbabilityMeasureExponential", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Lat.ext", "mode": "base", "wall_ms": 10099, "phases": [{"name": "canonical", "ms": 10087}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Lat.ext", "mode": "monop", "wall_ms": 34, "phases": [{"name": "monomorphize", "ms": 30}], "err": "monomorphize: unknown free variable '_fvar.577'", "suggestion": null, "status": "fail"}
+{"name": "ProbabilityTheory.isProbabilityMeasureExponential", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.mkRat_eq_div", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.mkRat_eq_div", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.tendsto_rpow_atTop", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PNat.div_add_mod", "mode": "base", "wall_ms": 1431, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "NNReal.tendsto_rpow_atTop", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PNat.div_add_mod", "mode": "monop", "wall_ms": 1358, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ENNReal.inv_le_one", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.inv_le_one", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "isPrimePow_of_minFac_pow_factorization_eq", "mode": "base", "wall_ms": 32766, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "isPrimePow_of_minFac_pow_factorization_eq", "mode": "monop", "wall_ms": 32352, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Ordinal.smul_eq_mul", "mode": "base", "wall_ms": 207, "phases": [{"name": "canonical", "ms": 188}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.smul_eq_mul", "mode": "monop", "wall_ms": 283, "phases": [{"name": "monomorphize", "ms": 65}, {"name": "canonical", "ms": 214}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.exists_seq_cover_iff_countable", "mode": "base", "wall_ms": 72, "phases": [{"name": "canonical", "ms": 68}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.exists_seq_cover_iff_countable", "mode": "monop", "wall_ms": 82, "phases": [{"name": "monomorphize", "ms": 9}, {"name": "canonical", "ms": 69}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.Lt.isWellOrder", "mode": "base", "wall_ms": 31, "phases": [{"name": "canonical", "ms": 28}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.Lt.isWellOrder", "mode": "monop", "wall_ms": 55, "phases": [{"name": "monomorphize", "ms": 16}, {"name": "canonical", "ms": 36}], "err": null, "suggestion": "exact fun n \u21a6 isWellOrder_lt_0 n", "status": "ok"}
+{"name": "MeasureTheory.Measure.toENNRealVectorMeasure_ennrealToMeasure", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.toENNRealVectorMeasure_ennrealToMeasure", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.testBit_eq_inth", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.testBit_eq_inth", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Fin.nontrivial_iff_two_le", "mode": "base", "wall_ms": 60, "phases": [{"name": "canonical", "ms": 46}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.nontrivial_iff_two_le", "mode": "monop", "wall_ms": 46, "phases": [{"name": "monomorphize", "ms": 24}, {"name": "canonical", "ms": 16}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.im_eq_zero_iff_isSelfAdjoint", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.im_eq_zero_iff_isSelfAdjoint", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.measurable_im", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.measurable_im", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "List.length_le_sum_of_one_le", "mode": "base", "wall_ms": 10098, "phases": [{"name": "canonical", "ms": 10051}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "List.length_le_sum_of_one_le", "mode": "monop", "wall_ms": 10155, "phases": [{"name": "monomorphize", "ms": 43}, {"name": "canonical", "ms": 10068}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.deriv_cos", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.deriv_cos", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.sInf_nonpos", "mode": "base", "wall_ms": 1769, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.sInf_nonpos", "mode": "monop", "wall_ms": 1692, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Grp.forget_reflects_isos", "mode": "base", "wall_ms": 222, "phases": [{"name": "canonical", "ms": 199}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Grp.forget_reflects_isos", "mode": "monop", "wall_ms": 236, "phases": [{"name": "monomorphize", "ms": 48}, {"name": "canonical", "ms": 182}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SimpleGraph.Walk.IsPath.getVert_injOn_iff", "mode": "base", "wall_ms": 10126, "phases": [{"name": "canonical", "ms": 10089}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SimpleGraph.Walk.IsPath.getVert_injOn_iff", "mode": "monop", "wall_ms": 10323, "phases": [{"name": "monomorphize", "ms": 86}, {"name": "canonical", "ms": 10215}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Frm.inv_hom_apply", "mode": "base", "wall_ms": 204, "phases": [{"name": "canonical", "ms": 196}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Frm.inv_hom_apply", "mode": "monop", "wall_ms": 30, "phases": [{"name": "monomorphize", "ms": 25}], "err": "monomorphize: unknown free variable '_fvar.586'", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.Game.addLeftStrictMono", "mode": "base", "wall_ms": 1357, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "SetTheory.Game.addLeftStrictMono", "mode": "monop", "wall_ms": 1807, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Nat.range_succ", "mode": "base", "wall_ms": 10091, "phases": [{"name": "canonical", "ms": 10061}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.range_succ", "mode": "monop", "wall_ms": 10118, "phases": [{"name": "monomorphize", "ms": 70}, {"name": "canonical", "ms": 10038}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Topology.IsOpenEmbedding.functor_isContinuous", "mode": "monop", "wall_ms": 40, "phases": [{"name": "monomorphize", "ms": 35}], "err": "monomorphize: unknown free variable '_fvar.1863'", "suggestion": null, "status": "fail"}
+{"name": "Equiv.isEmpty_congr", "mode": "base", "wall_ms": 19, "phases": [{"name": "canonical", "ms": 15}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Equiv.isEmpty_congr", "mode": "monop", "wall_ms": 22, "phases": [{"name": "monomorphize", "ms": 4}, {"name": "canonical", "ms": 14}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "FirstOrder.Language.Theory.Iff.not", "mode": "base", "wall_ms": 1752, "phases": [{"name": "canonical", "ms": 1747}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "FirstOrder.Language.Theory.Iff.not", "mode": "monop", "wall_ms": 1854, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 1827}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Topology.IsOpenEmbedding.functor_isContinuous", "mode": "base", "wall_ms": 35001, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "continuous_circleMap_inv", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "continuous_circleMap_inv", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.HolderConjugate.inv_inv", "mode": "base", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.iUnion_iUnion_eq_right", "mode": "base", "wall_ms": 1368, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "NNReal.HolderConjugate.inv_inv", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.iUnion_iUnion_eq_right", "mode": "monop", "wall_ms": 1343, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "FreeAddGroup.freeAddGroupCongr_trans", "mode": "monop", "wall_ms": 46, "phases": [{"name": "monomorphize", "ms": 30}], "err": "monomorphize: unknown free variable '_fvar.301'", "suggestion": null, "status": "fail"}
+{"name": "PartOrd.hom_inv_apply", "mode": "base", "wall_ms": 95, "phases": [{"name": "canonical", "ms": 90}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "PartOrd.hom_inv_apply", "mode": "monop", "wall_ms": 23, "phases": [{"name": "monomorphize", "ms": 18}], "err": "monomorphize: unknown free variable '_fvar.586'", "suggestion": null, "status": "fail"}
+{"name": "FreeAddGroup.freeAddGroupCongr_trans", "mode": "base", "wall_ms": 363, "phases": [{"name": "canonical", "ms": 350}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.nadd_nat", "mode": "base", "wall_ms": 507, "phases": [{"name": "canonical", "ms": 502}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.nadd_nat", "mode": "monop", "wall_ms": 749, "phases": [{"name": "monomorphize", "ms": 20}, {"name": "canonical", "ms": 720}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "NNReal.instIsStrictOrderedRing", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.instIsStrictOrderedRing", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.IdealSheafData.ideal_ofIdeals_le", "mode": "monop", "wall_ms": 84, "phases": [{"name": "monomorphize", "ms": 70}], "err": "monomorphize: unknown free variable '_fvar.1639'", "suggestion": null, "status": "fail"}
+{"name": "SSet.Subcomplex.range_eq_ofSimplex", "mode": "base", "wall_ms": 5930, "phases": [{"name": "canonical", "ms": 5926}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SSet.Subcomplex.range_eq_ofSimplex", "mode": "monop", "wall_ms": 22, "phases": [{"name": "monomorphize", "ms": 19}], "err": "monomorphize: unknown free variable '_fvar.713'", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.principal_one_iff", "mode": "base", "wall_ms": 119, "phases": [{"name": "canonical", "ms": 114}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.principal_one_iff", "mode": "monop", "wall_ms": 186, "phases": [{"name": "monomorphize", "ms": 65}, {"name": "canonical", "ms": 117}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.Scheme.IdealSheafData.ideal_ofIdeals_le", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.rpow_zpow_comm", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.rpow_zpow_comm", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.young_inequality_real", "mode": "base", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Mathlib.Meta.NormNum.IsNatPowModT.bit0", "mode": "base", "wall_ms": 76, "phases": [{"name": "canonical", "ms": 66}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Mathlib.Meta.NormNum.IsNatPowModT.bit0", "mode": "monop", "wall_ms": 46, "phases": [{"name": "monomorphize", "ms": 11}, {"name": "canonical", "ms": 32}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "NNReal.young_inequality_real", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.rank_rat_complex", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Finset.inf_set_eq_iInter", "mode": "base", "wall_ms": 1443, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Complex.rank_rat_complex", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Finset.inf_set_eq_iInter", "mode": "monop", "wall_ms": 1384, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Set.WellFoundedOn.subset", "mode": "monop", "wall_ms": 109, "phases": [{"name": "monomorphize", "ms": 22}, {"name": "canonical", "ms": 64}], "err": null, "suggestion": "exact fun {\u03b1} {r} {s t} h hst \u21a6 Set_WellFoundedOn_mono_0 h (fun i i_1 a \u21a6 a) hst", "status": "ok"}
+{"name": "Set.WellFoundedOn.subset", "mode": "base", "wall_ms": 2674, "phases": [{"name": "canonical", "ms": 2661}], "err": null, "suggestion": "exact fun {\u03b1} {r} {s t} h hst \u21a6 Set.WellFoundedOn.mono h (fun i i_1 a \u21a6 a) fun \u2983a\u2984 a_1 \u21a6 hst a_1", "status": "ok"}
+{"name": "forall_or_left", "mode": "base", "wall_ms": 10021, "phases": [{"name": "canonical", "ms": 10016}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "forall_or_left", "mode": "monop", "wall_ms": 10042, "phases": [{"name": "monomorphize", "ms": 22}, {"name": "canonical", "ms": 10016}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "LSeries_analyticOnNhd", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "LSeries_analyticOnNhd", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Stream'.WSeq.productive_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Stream'.WSeq.productive_iff", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ordinal.toPGame_equiv_iff", "mode": "monop", "wall_ms": 241, "phases": [{"name": "monomorphize", "ms": 35}, {"name": "canonical", "ms": 180}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.toPGame_equiv_iff", "mode": "base", "wall_ms": 1356, "phases": [{"name": "canonical", "ms": 1343}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Equiv.ext", "mode": "base", "wall_ms": 10027, "phases": [{"name": "canonical", "ms": 10017}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Equiv.ext", "mode": "monop", "wall_ms": 10032, "phases": [{"name": "monomorphize", "ms": 10}, {"name": "canonical", "ms": 10015}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Cardinal.lift_sInf", "mode": "base", "wall_ms": 2035, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Cardinal.lift_sInf", "mode": "monop", "wall_ms": 1983, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Complex.hasSum_cosh", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.hasSum_cosh", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "SimpleGraph.Walk.length_reverse", "mode": "monop", "wall_ms": 202, "phases": [{"name": "monomorphize", "ms": 25}, {"name": "canonical", "ms": 166}], "err": null, "suggestion": "exact fun {V} {G} {u v} p \u21a6\n  Eq.rec (motive := fun a t \u21a6 (p.reverseAux SimpleGraph.Walk.nil).length = a)\n    (SimpleGraph_Walk_length_reverseAux_0 p SimpleGraph.Walk.nil)\n    (Nat.rec (motive := fun t \u21a6 t = t) (Eq.refl Nat.zero) (fun n n_ih \u21a6 Eq.refl n.succ) p.length)", "status": "ok"}
+{"name": "SimpleGraph.Walk.length_reverse", "mode": "base", "wall_ms": 203, "phases": [{"name": "canonical", "ms": 190}], "err": null, "suggestion": "exact fun {V} {G} {u v} p \u21a6\n  Eq.rec (motive := fun a t \u21a6 (p.reverseAux SimpleGraph.Walk.nil).length = a)\n    (SimpleGraph.Walk.length_reverseAux p SimpleGraph.Walk.nil)\n    (Nat.rec (motive := fun t \u21a6 t = t) (Eq.refl Nat.zero) (fun n n_ih \u21a6 Eq.refl n.succ) p.length)", "status": "ok"}
+{"name": "PiNat.dist_triangle", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PiNat.dist_triangle", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.sInter_subset_of_mem", "mode": "monop", "wall_ms": 55, "phases": [{"name": "monomorphize", "ms": 23}, {"name": "canonical", "ms": 19}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.sInter_subset_of_mem", "mode": "base", "wall_ms": 1330, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "intervalIntegral.integral_nonneg", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "intervalIntegral.integral_nonneg", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Fin.map_finCongr_uIcc", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Fin.map_finCongr_uIcc", "mode": "monop", "wall_ms": 21672, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ProbabilityTheory.Kernel.indepSets_zero_left", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ProbabilityTheory.Kernel.indepSets_zero_left", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.squarefree_iff_nodup_primeFactorsList", "mode": "base", "wall_ms": 831, "phases": [{"name": "canonical", "ms": 813}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.squarefree_iff_nodup_primeFactorsList", "mode": "monop", "wall_ms": 10266, "phases": [{"name": "monomorphize", "ms": 29}, {"name": "canonical", "ms": 10214}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.univ_succ", "mode": "monop", "wall_ms": 62, "phases": [{"name": "monomorphize", "ms": 47}], "err": "monomorphize: unknown free variable '_fvar.1618'", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.type_unit", "mode": "base", "wall_ms": 42, "phases": [{"name": "canonical", "ms": 39}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.type_unit", "mode": "monop", "wall_ms": 26, "phases": [{"name": "monomorphize", "ms": 3}, {"name": "canonical", "ms": 18}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Ordinal.ord_cof_le", "mode": "base", "wall_ms": 2294, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Fin.univ_succ", "mode": "base", "wall_ms": 33682, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Ordinal.ord_cof_le", "mode": "monop", "wall_ms": 2280, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "deriv_neg_left_of_sign_deriv", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "deriv_neg_left_of_sign_deriv", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.logb_lt_logb", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Cardinal.one_le_lift_iff", "mode": "base", "wall_ms": 1420, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.logb_lt_logb", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Cardinal.one_le_lift_iff", "mode": "monop", "wall_ms": 324, "phases": [{"name": "monomorphize", "ms": 294}], "err": "monomorphize: failed to solve universe constraint\n  max ?u.110 ?u.111 =?= max ?u.119 ?u.120\nwhile trying to unify\n  OfNat.{max (?u.110 + 1) (?u.111 + 1)} Cardinal.{max ?u.111 ?u.110} 1 : Type (max (?u.110 + 1) (?u.111 + 1))\nwith\n  OfNat.{(max ?u.120 ?u.119) + 1} Cardinal.{max ?u.120 ?u.119} 1 : Type ((max ?u.120 ?u.119) + 1)", "suggestion": null, "status": "fail"}
+{"name": "Filter.map_comap", "mode": "base", "wall_ms": 1366, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Filter.map_comap", "mode": "monop", "wall_ms": 2109, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ConvexOn.differentiableWithinAt_Ioi_of_mem_interior", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ConvexOn.differentiableWithinAt_Ioi_of_mem_interior", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "PNat.eq_one_of_lt_two", "mode": "base", "wall_ms": 10057, "phases": [{"name": "canonical", "ms": 10043}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "PNat.eq_one_of_lt_two", "mode": "monop", "wall_ms": 10103, "phases": [{"name": "monomorphize", "ms": 38}, {"name": "canonical", "ms": 10054}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "intervalIntegral.intervalIntegrable_deriv_of_nonneg", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "intervalIntegral.intervalIntegrable_deriv_of_nonneg", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.HasFiniteIntegral.min_zero", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.HasFiniteIntegral.min_zero", "mode": "monop", "wall_ms": 35009, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.arccos_neg_one", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.arccos_neg_one", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.integrableOn_rpowIntegrand\u2080\u2081_Ici", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.integrableOn_rpowIntegrand\u2080\u2081_Ici", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.Pullback.Triplet.specTensorTo_snd", "mode": "monop", "wall_ms": 82, "phases": [{"name": "monomorphize", "ms": 68}], "err": "monomorphize: unknown free variable '_fvar.1545'", "suggestion": null, "status": "fail"}
+{"name": "Complex.I_mul", "mode": "base", "wall_ms": 10031, "phases": [{"name": "canonical", "ms": 10026}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.I_mul", "mode": "monop", "wall_ms": 10057, "phases": [{"name": "monomorphize", "ms": 32}, {"name": "canonical", "ms": 10019}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Filter.comap_inf_principal_neBot_of_image_mem", "mode": "base", "wall_ms": 56, "phases": [{"name": "canonical", "ms": 52}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Filter.comap_inf_principal_neBot_of_image_mem", "mode": "monop", "wall_ms": 55, "phases": [{"name": "monomorphize", "ms": 9}, {"name": "canonical", "ms": 40}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.Scheme.Pullback.Triplet.specTensorTo_snd", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.differentiableAt_arctan", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Matrix.eta_fin_two", "mode": "base", "wall_ms": 153, "phases": [{"name": "canonical", "ms": 137}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Matrix.eta_fin_two", "mode": "monop", "wall_ms": 182, "phases": [{"name": "monomorphize", "ms": 30}, {"name": "canonical", "ms": 145}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENat.one_lt_top", "mode": "base", "wall_ms": 25, "phases": [{"name": "canonical", "ms": 22}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENat.one_lt_top", "mode": "monop", "wall_ms": 10045, "phases": [{"name": "monomorphize", "ms": 18}, {"name": "canonical", "ms": 10023}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.differentiableAt_arctan", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Zsqrtd.decompose", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Zsqrtd.decompose", "mode": "monop", "wall_ms": 10150, "phases": [{"name": "monomorphize", "ms": 59}, {"name": "canonical", "ms": 10047}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.measurable_arccos", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.measurable_arccos", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EReal.coe_toReal", "mode": "base", "wall_ms": 69, "phases": [{"name": "canonical", "ms": 53}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "EReal.coe_toReal", "mode": "monop", "wall_ms": 42, "phases": [{"name": "monomorphize", "ms": 20}, {"name": "canonical", "ms": 18}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.biUnion_le_succ", "mode": "base", "wall_ms": 1315, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Set.biUnion_le_succ", "mode": "monop", "wall_ms": 1331, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "CongruenceSubgroup.Gamma_mem", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CongruenceSubgroup.Gamma_mem", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "EReal.neg_eq_top_iff", "mode": "base", "wall_ms": 79, "phases": [{"name": "canonical", "ms": 64}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "EReal.neg_eq_top_iff", "mode": "monop", "wall_ms": 10075, "phases": [{"name": "monomorphize", "ms": 21}, {"name": "canonical", "ms": 10019}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Complex.IsExpCmpFilter.abs_im_pow_eventuallyLE_exp_re", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.IsExpCmpFilter.abs_im_pow_eventuallyLE_exp_re", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.eq_prime_pow_of_unique_prime_dvd", "mode": "base", "wall_ms": 10123, "phases": [{"name": "canonical", "ms": 10067}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.eq_prime_pow_of_unique_prime_dvd", "mode": "monop", "wall_ms": 10195, "phases": [{"name": "monomorphize", "ms": 48}, {"name": "canonical", "ms": 10136}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.borel_eq_generateFrom_Ici_rat", "mode": "base", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.borel_eq_generateFrom_Ici_rat", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "BoxIntegral.Box.coe_subset_Icc", "mode": "base", "wall_ms": 94, "phases": [{"name": "canonical", "ms": 81}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "BoxIntegral.Box.coe_subset_Icc", "mode": "monop", "wall_ms": 183, "phases": [{"name": "monomorphize", "ms": 33}, {"name": "canonical", "ms": 138}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "MeasureTheory.Measure.absolutelyContinuous_of_add_of_mutuallySingular", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.absolutelyContinuous_of_add_of_mutuallySingular", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.div_sqrt", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.div_sqrt", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AEMeasurable.cexp", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AEMeasurable.cexp", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.IsSeparated.instMap", "mode": "monop", "wall_ms": 63, "phases": [{"name": "monomorphize", "ms": 48}], "err": "monomorphize: unknown free variable '_fvar.2559'", "suggestion": null, "status": "fail"}
+{"name": "Nat.ascFactorial_lt_pow_add", "mode": "base", "wall_ms": 10029, "phases": [{"name": "canonical", "ms": 10024}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.ascFactorial_lt_pow_add", "mode": "monop", "wall_ms": 10072, "phases": [{"name": "monomorphize", "ms": 33}, {"name": "canonical", "ms": 10023}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.PairwiseDisjoint.elim_finset", "mode": "base", "wall_ms": 10056, "phases": [{"name": "canonical", "ms": 10050}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AlgebraicGeometry.IsSeparated.instMap", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Set.PairwiseDisjoint.elim_finset", "mode": "monop", "wall_ms": 10047, "phases": [{"name": "monomorphize", "ms": 13}, {"name": "canonical", "ms": 10030}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "directedOn_univ_iff", "mode": "base", "wall_ms": 20, "phases": [{"name": "canonical", "ms": 15}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "directedOn_univ_iff", "mode": "monop", "wall_ms": 20, "phases": [{"name": "monomorphize", "ms": 3}, {"name": "canonical", "ms": 14}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.rpow_le_rpow_left_iff", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.rpow_le_rpow_left_iff", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.le_sqrt'", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.le_sqrt'", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Pell.xz_sub", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Pell.xz_sub", "mode": "monop", "wall_ms": 88, "phases": [{"name": "monomorphize", "ms": 67}], "err": "monomorphize: unknown free variable '_fvar.1016'", "suggestion": null, "status": "fail"}
+{"name": "Grp.instFullUliftFunctor", "mode": "base", "wall_ms": 2011, "phases": [{"name": "canonical", "ms": 2007}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Grp.instFullUliftFunctor", "mode": "monop", "wall_ms": 2069, "phases": [{"name": "monomorphize", "ms": 10}, {"name": "canonical", "ms": 2044}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "AEMeasurable.coe_real_ereal", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AEMeasurable.coe_real_ereal", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.abs_cos_int_mul_pi", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.abs_cos_int_mul_pi", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ZFSet.rank_union", "mode": "base", "wall_ms": 1810, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ZFSet.rank_union", "mode": "monop", "wall_ms": 1863, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Real.logb_mul", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.logb_mul", "mode": "monop", "wall_ms": 35002, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "TopCat.prodIsoProd_inv_fst", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "TopCat.prodIsoProd_inv_fst", "mode": "monop", "wall_ms": 430, "phases": [{"name": "monomorphize", "ms": 393}], "err": "monomorphize: failed to solve universe constraint\n  max ?u.474 ?u.475 =?= max ?u.777 ?u.778\nwhile trying to unify\n  CategoryTheory.Category.{max ?u.474 ?u.475, (max ?u.474 ?u.475) + 1}\n    TopCat.{max ?u.474 ?u.475} : Type ((max ?u.474 ?u.475) + 1)\nwith\n  CategoryTheory.Category.{max ?u.778 ?u.777, (max ?u.778 ?u.777) + 1}\n    TopCat.{max ?u.778 ?u.777} : Type ((max ?u.778 ?u.777) + 1)", "suggestion": null, "status": "fail"}
+{"name": "SimpleGraph.Copy.ext", "mode": "base", "wall_ms": 10063, "phases": [{"name": "canonical", "ms": 10029}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SimpleGraph.Copy.ext", "mode": "monop", "wall_ms": 128, "phases": [{"name": "monomorphize", "ms": 30}, {"name": "canonical", "ms": 85}], "err": null, "suggestion": "exact fun {\u03b1} {\u03b2} {A} {B} {f g} a \u21a6 DFunLike_ext_0 \u03b1 \u03b2 A B f g fun x \u21a6 a x", "status": "ok"}
+{"name": "Rat.not_firstCountableTopology_opc", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Rat.not_firstCountableTopology_opc", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.Hom.range_subset_ker_support", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.Hom.range_subset_ker_support", "mode": "monop", "wall_ms": 727, "phases": [{"name": "monomorphize", "ms": 694}], "err": "monomorphize: unknown free variable '_fvar.5753'", "suggestion": null, "status": "fail"}
+{"name": "Finset.coe_covBy_coe", "mode": "base", "wall_ms": 10124, "phases": [{"name": "canonical", "ms": 10078}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Finset.coe_covBy_coe", "mode": "monop", "wall_ms": 4674, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Nat.size_pow", "mode": "base", "wall_ms": 10099, "phases": [{"name": "canonical", "ms": 10055}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.size_pow", "mode": "monop", "wall_ms": 10204, "phases": [{"name": "monomorphize", "ms": 89}, {"name": "canonical", "ms": 10080}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "HasStrictDerivAt.cpow", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "HasStrictDerivAt.cpow", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.HolderTriple.symm", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "NNReal.HolderTriple.symm", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.SignedMeasure.toMeasureOfZeroLE_apply", "mode": "monop", "wall_ms": 99, "phases": [{"name": "monomorphize", "ms": 84}], "err": "monomorphize: unknown free variable '_fvar.3173'", "suggestion": null, "status": "fail"}
+{"name": "ENNReal.le_coe_iff", "mode": "base", "wall_ms": 10034, "phases": [{"name": "canonical", "ms": 10030}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ENNReal.le_coe_iff", "mode": "monop", "wall_ms": 51, "phases": [{"name": "monomorphize", "ms": 18}, {"name": "canonical", "ms": 29}], "err": null, "suggestion": "exact fun {a} {r} \u21a6 WithTop_le_coe_iff_1", "status": "ok"}
+{"name": "MeasureTheory.SignedMeasure.toMeasureOfZeroLE_apply", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.GlueData.instHasMulticoequalizerDiagram", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "AlgebraicGeometry.Scheme.GlueData.instHasMulticoequalizerDiagram", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Cardinal.mk_toType", "mode": "base", "wall_ms": 14412, "phases": [{"name": "canonical", "ms": 5103}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Cardinal.mk_toType", "mode": "monop", "wall_ms": 29966, "phases": [{"name": "monomorphize", "ms": 27}, {"name": "canonical", "ms": 7669}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Real.toNNReal_div'", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.toNNReal_div'", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Ultrafilter.isAtom", "mode": "base", "wall_ms": 1509, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Ultrafilter.isAtom", "mode": "monop", "wall_ms": 10159, "phases": [{"name": "monomorphize", "ms": 40}, {"name": "canonical", "ms": 10058}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ArithmeticFunction.vonMangoldt_nonneg", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ArithmeticFunction.vonMangoldt_nonneg", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "exists_polynomial_near_continuousMap", "mode": "monop", "wall_ms": 95, "phases": [{"name": "monomorphize", "ms": 80}], "err": "monomorphize: unknown free variable '_fvar.2261'", "suggestion": null, "status": "fail"}
+{"name": "exists_polynomial_near_continuousMap", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "norm_cexp_neg_mul_sq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "norm_cexp_neg_mul_sq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Profinite.instEpiAppDiscreteQuotientCarrierToTopTotallyDisconnectedSpace\u03c0AsLimitCone", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Profinite.instEpiAppDiscreteQuotientCarrierToTopTotallyDisconnectedSpace\u03c0AsLimitCone", "mode": "monop", "wall_ms": 107, "phases": [{"name": "monomorphize", "ms": 89}], "err": "monomorphize: unknown free variable '_fvar.1502'", "suggestion": null, "status": "fail"}
+{"name": "SimplicialObject.Splitting.IndexSet.ext", "mode": "base", "wall_ms": 141, "phases": [{"name": "canonical", "ms": 136}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SimplicialObject.Splitting.IndexSet.ext", "mode": "monop", "wall_ms": 9, "phases": [{"name": "monomorphize", "ms": 7}], "err": "monomorphize: unknown free variable '_fvar.325'", "suggestion": null, "status": "fail"}
+{"name": "Set.disjoint_sUnion_left", "mode": "base", "wall_ms": 94, "phases": [{"name": "canonical", "ms": 88}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.disjoint_sUnion_left", "mode": "monop", "wall_ms": 57, "phases": [{"name": "monomorphize", "ms": 15}, {"name": "canonical", "ms": 38}], "err": null, "suggestion": "exact fun {\u03b1} {S} {t} \u21a6 sSup_disjoint_iff_0 \u03b1", "status": "ok"}
+{"name": "TopCat.GlueData.\u03b9_mono", "mode": "monop", "wall_ms": 51, "phases": [{"name": "monomorphize", "ms": 35}], "err": "monomorphize: unknown free variable '_fvar.958'", "suggestion": null, "status": "fail"}
+{"name": "TopCat.GlueData.\u03b9_mono", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.comap\u2097_eq_comap", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Measure.comap\u2097_eq_comap", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENat.toENNReal_strictMono", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ContT.instLawfulMonad", "mode": "base", "wall_ms": 59, "phases": [{"name": "canonical", "ms": 43}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "ContT.instLawfulMonad", "mode": "monop", "wall_ms": 1559, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "ENat.toENNReal_strictMono", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.tsum_apply", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "ENNReal.tsum_apply", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Cardinal.mk_freeCommRing", "mode": "base", "wall_ms": 2658, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "Cardinal.mk_freeCommRing", "mode": "monop", "wall_ms": 2694, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "LinearGrowth.linearGrowthInf_le_linearGrowthSup_of_frequently_le", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "LinearGrowth.linearGrowthInf_le_linearGrowthSup_of_frequently_le", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.addContent_union'", "mode": "monop", "wall_ms": 33872, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "MeasureTheory.addContent_union'", "mode": "base", "wall_ms": 34916, "phases": null, "err": null, "suggestion": null, "status": "crash"}
+{"name": "CircleDeg1Lift.translationNumber_of_eq_add_int", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "CircleDeg1Lift.translationNumber_of_eq_add_int", "mode": "monop", "wall_ms": 35010, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Nat.odd_add'", "mode": "monop", "wall_ms": 462, "phases": [{"name": "monomorphize", "ms": 29}, {"name": "canonical", "ms": 417}], "err": null, "suggestion": "exact fun {m n} \u21a6 Eq.rec (motive := fun a t \u21a6 Odd_0 a \u2194 (Odd_0 n \u2194 Even_0 m)) Nat_odd_add_0 (add_comm_0 n m)", "status": "ok"}
+{"name": "CategoryTheory.subcanonical_typesGrothendieckTopology", "mode": "base", "wall_ms": 3477, "phases": [{"name": "canonical", "ms": 3471}], "err": "canonical: goal ?[anonymous]", "suggestion": null, "status": "fail"}
+{"name": "CategoryTheory.subcanonical_typesGrothendieckTopology", "mode": "monop", "wall_ms": 4295, "phases": [{"name": "monomorphize", "ms": 20}, {"name": "canonical", "ms": 4263}], "err": "canonical: goal ?[anonymous]", "suggestion": null, "status": "fail"}
+{"name": "Fin.succAbove_le_succAbove_iff", "mode": "base", "wall_ms": 590, "phases": [{"name": "canonical", "ms": 574}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Fin.succAbove_le_succAbove_iff", "mode": "monop", "wall_ms": 409, "phases": [{"name": "monomorphize", "ms": 42}, {"name": "canonical", "ms": 352}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Nat.odd_add'", "mode": "base", "wall_ms": 10116, "phases": [{"name": "canonical", "ms": 10103}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.union_diff_cancel_right", "mode": "base", "wall_ms": 10100, "phases": [{"name": "canonical", "ms": 10095}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Set.union_diff_cancel_right", "mode": "monop", "wall_ms": 10081, "phases": [{"name": "monomorphize", "ms": 38}, {"name": "canonical", "ms": 10039}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "MeasureTheory.IsStoppingTime.add", "mode": "monop", "wall_ms": 58, "phases": [{"name": "monomorphize", "ms": 53}], "err": "monomorphize: unknown free variable '_fvar.2066'", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.lf_iff_lt_or_fuzzy", "mode": "base", "wall_ms": 10100, "phases": [{"name": "canonical", "ms": 10096}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "SetTheory.PGame.lf_iff_lt_or_fuzzy", "mode": "monop", "wall_ms": 10101, "phases": [{"name": "monomorphize", "ms": 4}, {"name": "canonical", "ms": 10092}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "MeasureTheory.IsStoppingTime.add", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Integrable.real_toNNReal", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.Integrable.real_toNNReal", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Mathlib.Meta.NormNum.minFacHelper_2", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "maximal_subset_iff", "mode": "base", "wall_ms": 60, "phases": [{"name": "canonical", "ms": 48}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "maximal_subset_iff", "mode": "monop", "wall_ms": 58, "phases": [{"name": "monomorphize", "ms": 26}, {"name": "canonical", "ms": 28}], "err": "canonical: No proof found.", "suggestion": null, "status": "fail"}
+{"name": "Mathlib.Meta.NormNum.minFacHelper_2", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.exp_lt_exp", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Real.exp_lt_exp", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.tan_periodic", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "Complex.tan_periodic", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.MemLp.integrable_sq", "mode": "base", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}
+{"name": "MeasureTheory.MemLp.integrable_sq", "mode": "monop", "wall_ms": 35000, "phases": null, "err": null, "suggestion": null, "status": "timeout"}

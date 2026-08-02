@@ -1,0 +1,122 @@
+population: 130497 problems after filtering
+[10/1200] {'fail': 8, 'ok': 2}
+[20/1200] {'fail': 18, 'ok': 2}
+[30/1200] {'fail': 23, 'ok': 7}
+[40/1200] {'fail': 31, 'ok': 8, 'error': 1}
+[50/1200] {'fail': 39, 'ok': 10, 'error': 1}
+[60/1200] {'fail': 48, 'ok': 10, 'error': 2}
+[70/1200] {'fail': 55, 'ok': 12, 'error': 3}
+[80/1200] {'fail': 62, 'ok': 14, 'error': 3, 'timeout': 1}
+[90/1200] {'fail': 68, 'ok': 15, 'error': 6, 'timeout': 1}
+[100/1200] {'fail': 75, 'ok': 15, 'error': 8, 'timeout': 2}
+[110/1200] {'fail': 79, 'ok': 21, 'error': 8, 'timeout': 2}
+[120/1200] {'fail': 87, 'ok': 23, 'error': 8, 'timeout': 2}
+[130/1200] {'fail': 96, 'ok': 24, 'error': 8, 'timeout': 2}
+[140/1200] {'fail': 103, 'ok': 27, 'error': 8, 'timeout': 2}
+[150/1200] {'fail': 113, 'ok': 27, 'error': 8, 'timeout': 2}
+[160/1200] {'fail': 122, 'ok': 28, 'error': 8, 'timeout': 2}
+[170/1200] {'fail': 131, 'ok': 28, 'error': 9, 'timeout': 2}
+[180/1200] {'fail': 141, 'ok': 28, 'error': 9, 'timeout': 2}
+[190/1200] {'fail': 150, 'ok': 28, 'error': 10, 'timeout': 2}
+[200/1200] {'fail': 158, 'ok': 28, 'error': 10, 'timeout': 2, 'crash': 2}
+[210/1200] {'fail': 168, 'ok': 28, 'error': 10, 'timeout': 2, 'crash': 2}
+[220/1200] {'fail': 174, 'ok': 28, 'error': 14, 'timeout': 2, 'crash': 2}
+[230/1200] {'fail': 181, 'ok': 30, 'error': 15, 'timeout': 2, 'crash': 2}
+[240/1200] {'fail': 187, 'ok': 31, 'error': 18, 'timeout': 2, 'crash': 2}
+[250/1200] {'fail': 190, 'ok': 38, 'error': 18, 'timeout': 2, 'crash': 2}
+[260/1200] {'fail': 197, 'ok': 40, 'error': 19, 'timeout': 2, 'crash': 2}
+[270/1200] {'fail': 206, 'ok': 40, 'error': 20, 'timeout': 2, 'crash': 2}
+[280/1200] {'fail': 216, 'ok': 40, 'error': 20, 'timeout': 2, 'crash': 2}
+[290/1200] {'fail': 223, 'ok': 42, 'error': 21, 'timeout': 2, 'crash': 2}
+[300/1200] {'fail': 228, 'ok': 46, 'error': 22, 'timeout': 2, 'crash': 2}
+[310/1200] {'fail': 234, 'ok': 50, 'error': 22, 'timeout': 2, 'crash': 2}
+[320/1200] {'fail': 244, 'ok': 50, 'error': 22, 'timeout': 2, 'crash': 2}
+[330/1200] {'fail': 253, 'ok': 51, 'error': 22, 'timeout': 2, 'crash': 2}
+[340/1200] {'fail': 255, 'ok': 54, 'error': 25, 'timeout': 4, 'crash': 2}
+[350/1200] {'fail': 264, 'ok': 54, 'error': 26, 'timeout': 4, 'crash': 2}
+[360/1200] {'fail': 272, 'ok': 54, 'error': 28, 'timeout': 4, 'crash': 2}
+[370/1200] {'fail': 280, 'ok': 54, 'error': 28, 'timeout': 6, 'crash': 2}
+[380/1200] {'fail': 283, 'ok': 58, 'error': 31, 'timeout': 6, 'crash': 2}
+[390/1200] {'fail': 287, 'ok': 63, 'error': 32, 'timeout': 6, 'crash': 2}
+[400/1200] {'fail': 297, 'ok': 63, 'error': 32, 'timeout': 6, 'crash': 2}
+[410/1200] {'fail': 305, 'ok': 65, 'error': 32, 'timeout': 6, 'crash': 2}
+[420/1200] {'fail': 313, 'ok': 65, 'error': 32, 'timeout': 6, 'crash': 4}
+[430/1200] {'fail': 320, 'ok': 68, 'error': 32, 'timeout': 6, 'crash': 4}
+[440/1200] {'fail': 326, 'ok': 70, 'error': 34, 'timeout': 6, 'crash': 4}
+[450/1200] {'fail': 336, 'ok': 70, 'error': 34, 'timeout': 6, 'crash': 4}
+[460/1200] {'fail': 342, 'ok': 72, 'error': 35, 'timeout': 6, 'crash': 5}
+[470/1200] {'fail': 351, 'ok': 72, 'error': 36, 'timeout': 6, 'crash': 5}
+[480/1200] {'fail': 357, 'ok': 72, 'error': 36, 'timeout': 8, 'crash': 7}
+[490/1200] {'fail': 366, 'ok': 72, 'error': 37, 'timeout': 8, 'crash': 7}
+[500/1200] {'fail': 375, 'ok': 73, 'error': 37, 'timeout': 8, 'crash': 7}
+[510/1200] {'fail': 379, 'ok': 79, 'error': 37, 'timeout': 8, 'crash': 7}
+[520/1200] {'fail': 387, 'ok': 80, 'error': 38, 'timeout': 8, 'crash': 7}
+[530/1200] {'fail': 394, 'ok': 83, 'error': 38, 'timeout': 8, 'crash': 7}
+[540/1200] {'fail': 397, 'ok': 90, 'error': 38, 'timeout': 8, 'crash': 7}
+[550/1200] {'fail': 402, 'ok': 95, 'error': 38, 'timeout': 8, 'crash': 7}
+[560/1200] {'fail': 412, 'ok': 95, 'error': 38, 'timeout': 8, 'crash': 7}
+[570/1200] {'fail': 418, 'ok': 99, 'error': 38, 'timeout': 8, 'crash': 7}
+[580/1200] {'fail': 428, 'ok': 99, 'error': 38, 'timeout': 8, 'crash': 7}
+[590/1200] {'fail': 438, 'ok': 99, 'error': 38, 'timeout': 8, 'crash': 7}
+[600/1200] {'fail': 445, 'ok': 101, 'error': 38, 'timeout': 9, 'crash': 7}
+[610/1200] {'fail': 451, 'ok': 104, 'error': 39, 'timeout': 9, 'crash': 7}
+[620/1200] {'fail': 457, 'ok': 108, 'error': 39, 'timeout': 9, 'crash': 7}
+[630/1200] {'fail': 466, 'ok': 109, 'error': 39, 'timeout': 9, 'crash': 7}
+[640/1200] {'fail': 476, 'ok': 109, 'error': 39, 'timeout': 9, 'crash': 7}
+[650/1200] {'fail': 484, 'ok': 111, 'error': 39, 'timeout': 9, 'crash': 7}
+[660/1200] {'fail': 494, 'ok': 111, 'error': 39, 'timeout': 9, 'crash': 7}
+[670/1200] {'fail': 502, 'ok': 113, 'error': 39, 'timeout': 9, 'crash': 7}
+[680/1200] {'fail': 506, 'ok': 117, 'error': 41, 'timeout': 9, 'crash': 7}
+[690/1200] {'fail': 515, 'ok': 117, 'error': 42, 'timeout': 9, 'crash': 7}
+[700/1200] {'fail': 517, 'ok': 119, 'error': 47, 'timeout': 10, 'crash': 7}
+[710/1200] {'fail': 523, 'ok': 123, 'error': 47, 'timeout': 10, 'crash': 7}
+[720/1200] {'fail': 533, 'ok': 123, 'error': 47, 'timeout': 10, 'crash': 7}
+[730/1200] {'fail': 540, 'ok': 126, 'error': 47, 'timeout': 10, 'crash': 7}
+[740/1200] {'fail': 549, 'ok': 126, 'error': 48, 'timeout': 10, 'crash': 7}
+[750/1200] {'fail': 555, 'ok': 130, 'error': 48, 'timeout': 10, 'crash': 7}
+[760/1200] {'fail': 564, 'ok': 130, 'error': 49, 'timeout': 10, 'crash': 7}
+[770/1200] {'fail': 574, 'ok': 130, 'error': 49, 'timeout': 10, 'crash': 7}
+[780/1200] {'fail': 580, 'ok': 130, 'error': 53, 'timeout': 10, 'crash': 7}
+[790/1200] {'fail': 588, 'ok': 131, 'error': 54, 'timeout': 10, 'crash': 7}
+[800/1200] {'fail': 593, 'ok': 135, 'error': 55, 'timeout': 10, 'crash': 7}
+[810/1200] {'fail': 597, 'ok': 139, 'error': 57, 'timeout': 10, 'crash': 7}
+[820/1200] {'fail': 605, 'ok': 139, 'error': 59, 'timeout': 10, 'crash': 7}
+[830/1200] {'fail': 613, 'ok': 139, 'error': 60, 'timeout': 11, 'crash': 7}
+[840/1200] {'fail': 619, 'ok': 143, 'error': 60, 'timeout': 11, 'crash': 7}
+[850/1200] {'fail': 627, 'ok': 143, 'error': 62, 'timeout': 11, 'crash': 7}
+[860/1200] {'fail': 635, 'ok': 145, 'error': 62, 'timeout': 11, 'crash': 7}
+[870/1200] {'fail': 645, 'ok': 145, 'error': 62, 'timeout': 11, 'crash': 7}
+[880/1200] {'fail': 655, 'ok': 145, 'error': 62, 'timeout': 11, 'crash': 7}
+[890/1200] {'fail': 659, 'ok': 147, 'error': 66, 'timeout': 11, 'crash': 7}
+[900/1200] {'fail': 668, 'ok': 147, 'error': 67, 'timeout': 11, 'crash': 7}
+[910/1200] {'fail': 678, 'ok': 147, 'error': 67, 'timeout': 11, 'crash': 7}
+[920/1200] {'fail': 688, 'ok': 147, 'error': 67, 'timeout': 11, 'crash': 7}
+[930/1200] {'fail': 696, 'ok': 149, 'error': 67, 'timeout': 11, 'crash': 7}
+[940/1200] {'fail': 703, 'ok': 149, 'error': 69, 'timeout': 12, 'crash': 7}
+[950/1200] {'fail': 711, 'ok': 151, 'error': 69, 'timeout': 12, 'crash': 7}
+[960/1200] {'fail': 718, 'ok': 153, 'error': 70, 'timeout': 12, 'crash': 7}
+[970/1200] {'fail': 725, 'ok': 155, 'error': 71, 'timeout': 12, 'crash': 7}
+[980/1200] {'fail': 731, 'ok': 159, 'error': 71, 'timeout': 12, 'crash': 7}
+[990/1200] {'fail': 739, 'ok': 161, 'error': 71, 'timeout': 12, 'crash': 7}
+[1000/1200] {'fail': 749, 'ok': 161, 'error': 71, 'timeout': 12, 'crash': 7}
+[1010/1200] {'fail': 754, 'ok': 166, 'error': 71, 'timeout': 12, 'crash': 7}
+[1020/1200] {'fail': 764, 'ok': 166, 'error': 71, 'timeout': 12, 'crash': 7}
+[1030/1200] {'fail': 773, 'ok': 167, 'error': 71, 'timeout': 12, 'crash': 7}
+[1040/1200] {'fail': 778, 'ok': 171, 'error': 72, 'timeout': 12, 'crash': 7}
+[1050/1200] {'fail': 786, 'ok': 173, 'error': 72, 'timeout': 12, 'crash': 7}
+[1060/1200] {'fail': 792, 'ok': 177, 'error': 72, 'timeout': 12, 'crash': 7}
+[1070/1200] {'fail': 798, 'ok': 181, 'error': 72, 'timeout': 12, 'crash': 7}
+[1080/1200] {'fail': 807, 'ok': 181, 'error': 73, 'timeout': 12, 'crash': 7}
+[1090/1200] {'fail': 817, 'ok': 181, 'error': 73, 'timeout': 12, 'crash': 7}
+[1100/1200] {'fail': 824, 'ok': 183, 'error': 73, 'timeout': 13, 'crash': 7}
+[1110/1200] {'fail': 834, 'ok': 183, 'error': 73, 'timeout': 13, 'crash': 7}
+[1120/1200] {'fail': 840, 'ok': 186, 'error': 74, 'timeout': 13, 'crash': 7}
+[1130/1200] {'fail': 849, 'ok': 187, 'error': 74, 'timeout': 13, 'crash': 7}
+[1140/1200] {'fail': 855, 'ok': 189, 'error': 76, 'timeout': 13, 'crash': 7}
+[1150/1200] {'fail': 861, 'ok': 191, 'error': 78, 'timeout': 13, 'crash': 7}
+[1160/1200] {'fail': 869, 'ok': 191, 'error': 80, 'timeout': 13, 'crash': 7}
+[1170/1200] {'fail': 877, 'ok': 191, 'error': 82, 'timeout': 13, 'crash': 7}
+[1180/1200] {'fail': 887, 'ok': 191, 'error': 82, 'timeout': 13, 'crash': 7}
+[1190/1200] {'fail': 895, 'ok': 191, 'error': 84, 'timeout': 13, 'crash': 7}
+[1200/1200] {'fail': 901, 'ok': 193, 'error': 86, 'timeout': 13, 'crash': 7}
+done: {'fail': 901, 'ok': 193, 'error': 86, 'timeout': 13, 'crash': 7}

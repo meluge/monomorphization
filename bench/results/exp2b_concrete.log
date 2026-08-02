@@ -1,0 +1,122 @@
+population: 15139 problems after filtering
+[10/1200] {'ok': 3, 'fail': 7}
+[20/1200] {'ok': 7, 'fail': 13}
+[30/1200] {'ok': 15, 'fail': 15}
+[40/1200] {'ok': 19, 'fail': 21}
+[50/1200] {'ok': 22, 'fail': 28}
+[60/1200] {'ok': 22, 'fail': 35, 'error': 3}
+[70/1200] {'ok': 22, 'fail': 44, 'error': 4}
+[80/1200] {'ok': 24, 'fail': 52, 'error': 4}
+[90/1200] {'ok': 24, 'fail': 62, 'error': 4}
+[100/1200] {'ok': 25, 'fail': 71, 'error': 4}
+[110/1200] {'ok': 29, 'fail': 76, 'error': 5}
+[120/1200] {'ok': 29, 'fail': 86, 'error': 5}
+[130/1200] {'ok': 31, 'fail': 94, 'error': 5}
+[140/1200] {'ok': 31, 'fail': 104, 'error': 5}
+[150/1200] {'ok': 31, 'fail': 114, 'error': 5}
+[160/1200] {'ok': 35, 'fail': 119, 'error': 6}
+[170/1200] {'ok': 35, 'fail': 127, 'error': 7, 'crash': 1}
+[180/1200] {'ok': 35, 'fail': 136, 'error': 7, 'crash': 2}
+[190/1200] {'ok': 35, 'fail': 146, 'error': 7, 'crash': 2}
+[200/1200] {'ok': 35, 'fail': 154, 'error': 8, 'crash': 3}
+[210/1200] {'ok': 35, 'fail': 164, 'error': 8, 'crash': 3}
+[220/1200] {'ok': 35, 'fail': 174, 'error': 8, 'crash': 3}
+[230/1200] {'ok': 35, 'fail': 184, 'error': 8, 'crash': 3}
+[240/1200] {'ok': 35, 'fail': 194, 'error': 8, 'crash': 3}
+[250/1200] {'ok': 35, 'fail': 203, 'error': 8, 'crash': 4}
+[260/1200] {'ok': 37, 'fail': 210, 'error': 9, 'crash': 4}
+[270/1200] {'ok': 39, 'fail': 216, 'error': 11, 'crash': 4}
+[280/1200] {'ok': 41, 'fail': 221, 'error': 14, 'crash': 4}
+[290/1200] {'ok': 41, 'fail': 230, 'error': 15, 'crash': 4}
+[300/1200] {'ok': 43, 'fail': 237, 'error': 16, 'crash': 4}
+[310/1200] {'ok': 46, 'fail': 244, 'error': 16, 'crash': 4}
+[320/1200] {'ok': 47, 'fail': 253, 'error': 16, 'crash': 4}
+[330/1200] {'ok': 49, 'fail': 258, 'error': 19, 'crash': 4}
+[340/1200] {'ok': 49, 'fail': 264, 'error': 21, 'crash': 6}
+[350/1200] {'ok': 50, 'fail': 273, 'error': 21, 'crash': 6}
+[360/1200] {'ok': 56, 'fail': 277, 'error': 21, 'crash': 6}
+[370/1200] {'ok': 60, 'fail': 283, 'error': 21, 'crash': 6}
+[380/1200] {'ok': 60, 'fail': 293, 'error': 21, 'crash': 6}
+[390/1200] {'ok': 62, 'fail': 299, 'error': 22, 'crash': 6, 'timeout': 1}
+[400/1200] {'ok': 62, 'fail': 309, 'error': 22, 'crash': 6, 'timeout': 1}
+[410/1200] {'ok': 64, 'fail': 316, 'error': 23, 'crash': 6, 'timeout': 1}
+[420/1200] {'ok': 64, 'fail': 325, 'error': 24, 'crash': 6, 'timeout': 1}
+[430/1200] {'ok': 64, 'fail': 335, 'error': 24, 'crash': 6, 'timeout': 1}
+[440/1200] {'ok': 64, 'fail': 345, 'error': 24, 'crash': 6, 'timeout': 1}
+[450/1200] {'ok': 68, 'fail': 351, 'error': 24, 'crash': 6, 'timeout': 1}
+[460/1200] {'ok': 73, 'fail': 356, 'error': 24, 'crash': 6, 'timeout': 1}
+[470/1200] {'ok': 75, 'fail': 362, 'error': 24, 'crash': 8, 'timeout': 1}
+[480/1200] {'ok': 75, 'fail': 372, 'error': 24, 'crash': 8, 'timeout': 1}
+[490/1200] {'ok': 76, 'fail': 381, 'error': 24, 'crash': 8, 'timeout': 1}
+[500/1200] {'ok': 80, 'fail': 387, 'error': 24, 'crash': 8, 'timeout': 1}
+[510/1200] {'ok': 81, 'fail': 396, 'error': 24, 'crash': 8, 'timeout': 1}
+[520/1200] {'ok': 81, 'fail': 405, 'error': 25, 'crash': 8, 'timeout': 1}
+[530/1200] {'ok': 83, 'fail': 412, 'error': 26, 'crash': 8, 'timeout': 1}
+[540/1200] {'ok': 85, 'fail': 420, 'error': 26, 'crash': 8, 'timeout': 1}
+[550/1200] {'ok': 90, 'fail': 425, 'error': 26, 'crash': 8, 'timeout': 1}
+[560/1200] {'ok': 90, 'fail': 432, 'error': 28, 'crash': 9, 'timeout': 1}
+[570/1200] {'ok': 92, 'fail': 440, 'error': 28, 'crash': 9, 'timeout': 1}
+[580/1200] {'ok': 93, 'fail': 449, 'error': 28, 'crash': 9, 'timeout': 1}
+[590/1200] {'ok': 95, 'fail': 454, 'error': 30, 'crash': 9, 'timeout': 2}
+[600/1200] {'ok': 95, 'fail': 464, 'error': 30, 'crash': 9, 'timeout': 2}
+[610/1200] {'ok': 95, 'fail': 473, 'error': 31, 'crash': 9, 'timeout': 2}
+[620/1200] {'ok': 101, 'fail': 477, 'error': 31, 'crash': 9, 'timeout': 2}
+[630/1200] {'ok': 101, 'fail': 487, 'error': 31, 'crash': 9, 'timeout': 2}
+[640/1200] {'ok': 103, 'fail': 495, 'error': 31, 'crash': 9, 'timeout': 2}
+[650/1200] {'ok': 103, 'fail': 505, 'error': 31, 'crash': 9, 'timeout': 2}
+[660/1200] {'ok': 109, 'fail': 509, 'error': 31, 'crash': 9, 'timeout': 2}
+[670/1200] {'ok': 109, 'fail': 519, 'error': 31, 'crash': 9, 'timeout': 2}
+[680/1200] {'ok': 114, 'fail': 524, 'error': 31, 'crash': 9, 'timeout': 2}
+[690/1200] {'ok': 115, 'fail': 533, 'error': 31, 'crash': 9, 'timeout': 2}
+[700/1200] {'ok': 119, 'fail': 539, 'error': 31, 'crash': 9, 'timeout': 2}
+[710/1200] {'ok': 122, 'fail': 546, 'error': 31, 'crash': 9, 'timeout': 2}
+[720/1200] {'ok': 124, 'fail': 554, 'error': 31, 'crash': 9, 'timeout': 2}
+[730/1200] {'ok': 125, 'fail': 562, 'error': 32, 'crash': 9, 'timeout': 2}
+[740/1200] {'ok': 125, 'fail': 572, 'error': 32, 'crash': 9, 'timeout': 2}
+[750/1200] {'ok': 125, 'fail': 581, 'error': 32, 'crash': 9, 'timeout': 3}
+[760/1200] {'ok': 127, 'fail': 589, 'error': 32, 'crash': 9, 'timeout': 3}
+[770/1200] {'ok': 127, 'fail': 597, 'error': 34, 'crash': 9, 'timeout': 3}
+[780/1200] {'ok': 129, 'fail': 604, 'error': 35, 'crash': 9, 'timeout': 3}
+[790/1200] {'ok': 129, 'fail': 614, 'error': 35, 'crash': 9, 'timeout': 3}
+[800/1200] {'ok': 129, 'fail': 622, 'error': 37, 'crash': 9, 'timeout': 3}
+[810/1200] {'ok': 137, 'fail': 624, 'error': 37, 'crash': 9, 'timeout': 3}
+[820/1200] {'ok': 139, 'fail': 632, 'error': 37, 'crash': 9, 'timeout': 3}
+[830/1200] {'ok': 141, 'fail': 640, 'error': 37, 'crash': 9, 'timeout': 3}
+[840/1200] {'ok': 141, 'fail': 648, 'error': 39, 'crash': 9, 'timeout': 3}
+[850/1200] {'ok': 141, 'fail': 658, 'error': 39, 'crash': 9, 'timeout': 3}
+[860/1200] {'ok': 141, 'fail': 667, 'error': 39, 'crash': 9, 'timeout': 4}
+[870/1200] {'ok': 145, 'fail': 672, 'error': 40, 'crash': 9, 'timeout': 4}
+[880/1200] {'ok': 148, 'fail': 679, 'error': 40, 'crash': 9, 'timeout': 4}
+[890/1200] {'ok': 148, 'fail': 689, 'error': 40, 'crash': 9, 'timeout': 4}
+[900/1200] {'ok': 149, 'fail': 698, 'error': 40, 'crash': 9, 'timeout': 4}
+[910/1200] {'ok': 151, 'fail': 705, 'error': 41, 'crash': 9, 'timeout': 4}
+[920/1200] {'ok': 151, 'fail': 712, 'error': 43, 'crash': 9, 'timeout': 5}
+[930/1200] {'ok': 154, 'fail': 719, 'error': 43, 'crash': 9, 'timeout': 5}
+[940/1200] {'ok': 158, 'fail': 725, 'error': 43, 'crash': 9, 'timeout': 5}
+[950/1200] {'ok': 160, 'fail': 733, 'error': 43, 'crash': 9, 'timeout': 5}
+[960/1200] {'ok': 160, 'fail': 741, 'error': 45, 'crash': 9, 'timeout': 5}
+[970/1200] {'ok': 163, 'fail': 748, 'error': 45, 'crash': 9, 'timeout': 5}
+[980/1200] {'ok': 163, 'fail': 758, 'error': 45, 'crash': 9, 'timeout': 5}
+[990/1200] {'ok': 165, 'fail': 766, 'error': 45, 'crash': 9, 'timeout': 5}
+[1000/1200] {'ok': 166, 'fail': 774, 'error': 46, 'crash': 9, 'timeout': 5}
+[1010/1200] {'ok': 169, 'fail': 780, 'error': 47, 'crash': 9, 'timeout': 5}
+[1020/1200] {'ok': 170, 'fail': 789, 'error': 47, 'crash': 9, 'timeout': 5}
+[1030/1200] {'ok': 170, 'fail': 799, 'error': 47, 'crash': 9, 'timeout': 5}
+[1040/1200] {'ok': 172, 'fail': 807, 'error': 47, 'crash': 9, 'timeout': 5}
+[1050/1200] {'ok': 177, 'fail': 810, 'error': 49, 'crash': 9, 'timeout': 5}
+[1060/1200] {'ok': 179, 'fail': 817, 'error': 49, 'crash': 9, 'timeout': 6}
+[1070/1200] {'ok': 179, 'fail': 825, 'error': 51, 'crash': 9, 'timeout': 6}
+[1080/1200] {'ok': 181, 'fail': 833, 'error': 51, 'crash': 9, 'timeout': 6}
+[1090/1200] {'ok': 184, 'fail': 840, 'error': 51, 'crash': 9, 'timeout': 6}
+[1100/1200] {'ok': 184, 'fail': 850, 'error': 51, 'crash': 9, 'timeout': 6}
+[1110/1200] {'ok': 187, 'fail': 855, 'error': 53, 'crash': 9, 'timeout': 6}
+[1120/1200] {'ok': 187, 'fail': 865, 'error': 53, 'crash': 9, 'timeout': 6}
+[1130/1200] {'ok': 189, 'fail': 873, 'error': 53, 'crash': 9, 'timeout': 6}
+[1140/1200] {'ok': 189, 'fail': 881, 'error': 55, 'crash': 9, 'timeout': 6}
+[1150/1200] {'ok': 191, 'fail': 889, 'error': 55, 'crash': 9, 'timeout': 6}
+[1160/1200] {'ok': 197, 'fail': 893, 'error': 55, 'crash': 9, 'timeout': 6}
+[1170/1200] {'ok': 199, 'fail': 901, 'error': 55, 'crash': 9, 'timeout': 6}
+[1180/1200] {'ok': 201, 'fail': 909, 'error': 55, 'crash': 9, 'timeout': 6}
+[1190/1200] {'ok': 206, 'fail': 913, 'error': 56, 'crash': 9, 'timeout': 6}
+[1200/1200] {'ok': 207, 'fail': 921, 'error': 57, 'crash': 9, 'timeout': 6}
+done: {'ok': 207, 'fail': 921, 'error': 57, 'crash': 9, 'timeout': 6}

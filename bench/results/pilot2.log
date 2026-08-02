@@ -1,0 +1,8 @@
+population: 130497 problems after filtering
+[10/60] {'fail': 4, 'timeout': 4, 'crash': 2}
+[20/60] {'fail': 8, 'timeout': 8, 'crash': 2, 'ok': 2}
+[30/60] {'fail': 12, 'timeout': 12, 'crash': 4, 'ok': 2}
+[40/60] {'fail': 15, 'timeout': 15, 'crash': 8, 'ok': 2}
+[50/60] {'fail': 16, 'timeout': 21, 'crash': 9, 'ok': 4}
+[60/60] {'fail': 22, 'timeout': 22, 'crash': 10, 'ok': 6}
+done: {'fail': 22, 'timeout': 22, 'crash': 10, 'ok': 6}

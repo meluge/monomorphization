@@ -13,3 +13,6 @@ require REPL from git
 
 
 lean_lib Monomorphization
+
+lean_exe extract where
+  root := `Extract

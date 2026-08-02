@@ -1,0 +1,230 @@
+[
+ {
+  "name": "AlgebraicGeometry.Scheme.IdealSheafData.subschemeMap_subscheme\u03b9",
+  "deps": [
+   "AlgebraicGeometry.IsClosedImmersion.lift_fac",
+   "AlgebraicGeometry.IsClosedImmersion.instSubscheme\u03b9"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.534'"
+ },
+ {
+  "name": "mul_uzpow",
+  "deps": [
+   "Equiv.injective",
+   "smul_add"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.631'"
+ },
+ {
+  "name": "AlgebraicGeometry.SheafedSpace.IsOpenImmersion.ofRestrict_invApp_apply",
+  "deps": [
+   "AlgebraicGeometry.SheafedSpace.IsOpenImmersion.ofRestrict",
+   "AlgebraicGeometry.PresheafedSpace.IsOpenImmersion.ofRestrict_invApp",
+   "Tactic.Elementwise.hom_elementwise"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.9011'"
+ },
+ {
+  "name": "WeierstrassCurve.Projective.equiv_iff_eq_of_Z_eq",
+  "deps": [
+   "WeierstrassCurve.Projective.equiv_iff_eq_of_Z_eq'",
+   "Nat.instNeZeroSucc",
+   "mem_nonZeroDivisors_of_ne_zero"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.2066'"
+ },
+ {
+  "name": "CategoryTheory.Comma.toPUnitIdEquiv_counitIso_hom_app",
+  "deps": [
+   "congrArg",
+   "CategoryTheory.Category.comp_id",
+   "Eq.trans"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.1215'"
+ },
+ {
+  "name": "AlgebraicGeometry.Scheme.comp_base_assoc",
+  "deps": [
+   "CategoryTheory.eq_whisker'",
+   "CategoryTheory.Category.assoc",
+   "congrArg",
+   "forall_congr"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.1057'"
+ },
+ {
+  "name": "AlgebraicGeometry.RingedSpace.basicOpen_res",
+  "deps": [
+   "Set.ext",
+   "congrArg",
+   "TopologicalSpace.Opens.ext",
+   "TopCat.Presheaf.germ_res_apply'",
+   "CommRingCat.Colimits.hasColimits_commRingCat"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.213080'"
+ },
+ {
+  "name": "CategoryTheory.Join.pseudofunctorLeft_mapComp_hom_app",
+  "deps": [
+   "congrArg",
+   "funext",
+   "CategoryTheory.Functor.map_id",
+   "CategoryTheory.Join.mapIsoWhiskerLeft_hom_app",
+   "Eq.trans"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.4163'"
+ },
+ {
+  "name": "FinBddDistLat.inv_hom_apply",
+  "deps": [
+   "congrArg",
+   "CategoryTheory.Iso.hom_inv_id_apply",
+   "eq_self",
+   "of_eq_true",
+   "Eq.trans"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.654'"
+ },
+ {
+  "name": "CompHaus.effectiveEpiFamily_of_jointly_surjective",
+  "deps": [
+   "CompHaus.instHasPropTrue",
+   "CompHausLike.instHasCoproduct",
+   "List.TFAE.out",
+   "Iff.mp",
+   "CompHaus.effectiveEpiFamily_tfae"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.1114'"
+ },
+ {
+  "name": "AlgebraicGeometry.Scheme.LocalRepresentability.yonedaGluedToSheaf_app_toGlued",
+  "deps": [
+   "congrArg",
+   "CategoryTheory.yonedaEquiv_yoneda_map",
+   "AlgebraicGeometry.Scheme.LocalRepresentability.yoneda_toGlued_yonedaGluedToSheaf",
+   "Eq.symm",
+   "AlgebraicGeometry.Scheme.subcanonical_zariskiTopology",
+   "CategoryTheory.yonedaEquiv_comp"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.8165'"
+ },
+ {
+  "name": "AlgebraicGeometry.IsAffineOpen.image_of_isOpenImmersion",
+  "deps": [
+   "AlgebraicGeometry.isAffineOpen_opensRange",
+   "AlgebraicGeometry.IsOpenImmersion.comp",
+   "TopologicalSpace.Opens.ext",
+   "AlgebraicGeometry.Scheme.Opens.instIsOpenImmersion\u03b9",
+   "Set.image_eq_range",
+   "eq_of_heq",
+   "Eq.symm"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.1263'"
+ },
+ {
+  "name": "CliffordAlgebraComplex.reverse_apply",
+  "deps": [
+   "LinearMap.map_add",
+   "congrArg",
+   "CliffordAlgebra.reverse.map_mul",
+   "CliffordAlgebra.reverse.commutes",
+   "mul_comm",
+   "CliffordAlgebra.reverse_\u03b9",
+   "CliffordAlgebra.induction"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.16132'"
+ },
+ {
+  "name": "Profinite.exists_hom",
+  "deps": [
+   "Iff.mpr",
+   "ContinuousMap.continuous",
+   "IsLocallyConstant.iff_continuous",
+   "CategoryTheory.ConcreteCategory.ext",
+   "ContinuousMap.ext",
+   "Profinite.exists_locallyConstant",
+   "LocallyConstant.congr_fun"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.72805'"
+ },
+ {
+  "name": "Fin.sum_Iic_castLE",
+  "deps": [
+   "Fin.map_castLEEmb_Iic",
+   "congrArg",
+   "Finset.sum_map",
+   "eq_self",
+   "of_eq_true",
+   "Eq.symm",
+   "Finset.sum_congr",
+   "Eq.trans"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.777'"
+ },
+ {
+  "name": "contMDiff_equivTangentBundleProd",
+  "deps": [
+   "le_rfl",
+   "congrArg",
+   "ContMDiff.contMDiff_tangentMap",
+   "contMDiff_snd",
+   "IsManifold.prod",
+   "equivTangentBundleProd_eq_tangentMap_prod_tangentMap",
+   "contMDiff_fst",
+   "ContMDiff.prodMk"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.14379'"
+ },
+ {
+  "name": "AddCircle.ergodic_nsmul_add",
+  "deps": [
+   "Int.instIsStrictOrderedRing",
+   "Nat.abs_cast",
+   "congrArg",
+   "eq_true",
+   "of_eq_true",
+   "Int.instCharZero",
+   "Int.instAddLeftMono",
+   "Int.instZeroLEOneClass",
+   "Eq.trans",
+   "AddCircle.ergodic_zsmul_add"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.1423'"
+ },
+ {
+  "name": "CategoryTheory.FunctorToTypes.prod_ext'",
+  "deps": [
+   "congrArg",
+   "UnivLE.small",
+   "CategoryTheory.instSmallDiscrete",
+   "CategoryTheory.Limits.Types.hasLimit",
+   "UnivLE.self",
+   "Prod.ext",
+   "congr",
+   "Prod.mk.eta",
+   "Equiv.injective",
+   "CategoryTheory.Limits.functorCategoryHasLimit",
+   "univLE_of_max"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.177185'"
+ },
+ {
+  "name": "stereographic'_symm_apply",
+  "deps": [
+   "fact_one_le_two_ennreal",
+   "LinearIsometryEquiv.norm_map",
+   "congrArg",
+   "ne_zero_of_mem_unit_sphere",
+   "instNatAtLeastTwo",
+   "RingHomInvPair.ids",
+   "Subtype.coe_eta",
+   "congr",
+   "eq_self",
+   "of_eq_true",
+   "stereo_right_inv",
+   "smul_add",
+   "Eq.trans"
+  ],
+  "err": "monomorphize: unknown free variable '_fvar.9615'"
+ }
+]
